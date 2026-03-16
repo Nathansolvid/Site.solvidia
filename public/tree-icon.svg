@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Dashed orbit circles -->
+  <circle cx="32" cy="32" r="30" stroke="#6B9B4A" stroke-width="0.9" stroke-dasharray="3.5 2.5" fill="none"/>
+  <circle cx="32" cy="32" r="25.5" stroke="#2B5E3F" stroke-width="0.8" stroke-dasharray="2.8 2.8" fill="none"/>
+
+  <!-- TRUNK: solid filled shape — tapered column with wide flared base, flat bottom -->
+  <path d="
+    M32 30
+    C31 33 30 36 28.5 39
+    Q26 43 23 46
+    L41 46
+    Q38 43 35.5 39
+    C34 36 33 33 32 30
+    Z
+  " fill="#2B4A2E"/>
+
+  <!-- LEFT MAIN BRANCH: thick, curves from trunk split outward-left -->
+  <path d="M32 30 Q27 26 21 23" stroke="#2B4A2E" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <!-- RIGHT MAIN BRANCH -->
+  <path d="M32 30 Q37 26 43 23" stroke="#2B4A2E" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <!-- CENTER STEM up -->
+  <path d="M32 30 L32 18" stroke="#2B4A2E" stroke-width="2.8" stroke-linecap="round"/>
+
+  <!-- Left sub-branch -->
+  <path d="M25 26 Q21 22 18 19" stroke="#2B4A2E" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <!-- Right sub-branch -->
+  <path d="M39 26 Q43 22 46 19" stroke="#2B4A2E" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <!-- Center-left sub-branch -->
+  <path d="M32 24 Q28 20 25 16" stroke="#2B4A2E" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+  <!-- Center-right sub-branch -->
+  <path d="M32 24 Q36 20 39 16" stroke="#2B4A2E" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+
+  <!-- LEAVES: large teardrop shapes matching original positions & colors -->
+
+  <!-- Top leaf pair (V shape at top of center stem) -->
+  <!-- Top-left: olive/light green, angled left -->
+  <path d="M0,-6 C3,-4 3.5,2.5 0,6 C-3.5,2.5 -3,-4 0,-6Z" fill="#8AAA3C" transform="translate(28,14) rotate(-20)"/>
+  <!-- Top-right: dark green, angled right -->
+  <path d="M0,-6 C3,-4 3.5,2.5 0,6 C-3.5,2.5 -3,-4 0,-6Z" fill="#2B5E3F" transform="translate(36,14) rotate(20)"/>
+  <!-- Top center small -->
+  <path d="M0,-5 C2.5,-3 3,2 0,5 C-3,2 -2.5,-3 0,-5Z" fill="#5A9A3E" transform="translate(32,11) rotate(0)"/>
+
+  <!-- Upper-right cluster: 2 large dark leaves -->
+  <path d="M0,-6.5 C3.5,-4.5 4,3 0,6.5 C-4,3 -3.5,-4.5 0,-6.5Z" fill="#2B5E3F" transform="translate(42,19) rotate(45)"/>
+  <path d="M0,-6 C3,-4 3.5,2.5 0,6 C-3.5,2.5 -3,-4 0,-6Z" fill="#345E3A" transform="translate(45,23) rotate(60)"/>
+
+  <!-- Upper-left cluster: 2 lighter leaves -->
+  <path d="M0,-6.5 C3.5,-4.5 4,3 0,6.5 C-4,3 -3.5,-4.5 0,-6.5Z" fill="#6B9E38" transform="translate(22,19) rotate(-45)"/>
+  <path d="M0,-6 C3,-4 3.5,2.5 0,6 C-3.5,2.5 -3,-4 0,-6Z" fill="#8AAA3C" transform="translate(19,23) rotate(-60)"/>
+
+  <!-- Mid-right: large dark leaf -->
+  <path d="M0,-5.5 C3,-3.5 3.5,2.5 0,5.5 C-3.5,2.5 -3,-3.5 0,-5.5Z" fill="#2B5E3F" transform="translate(46,27) rotate(65)"/>
+
+  <!-- Mid-left: olive leaf -->
+  <path d="M0,-5.5 C3,-3.5 3.5,2.5 0,5.5 C-3.5,2.5 -3,-3.5 0,-5.5Z" fill="#7BA83C" transform="translate(18,27) rotate(-65)"/>
+
+  <!-- Inner leaves near center -->
+  <path d="M0,-5 C2.5,-3 3,2 0,5 C-3,2 -2.5,-3 0,-5Z" fill="#4A8B3E" transform="translate(25,16) rotate(-25)"/>
+  <path d="M0,-5 C2.5,-3 3,2 0,5 C-3,2 -2.5,-3 0,-5Z" fill="#345E3A" transform="translate(39,16) rotate(25)"/>
+</svg>
