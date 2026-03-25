@@ -1,64 +1,11 @@
-import { Check, Sparkles } from 'lucide-react'
+import { Check, ArrowRight } from 'lucide-react'
 
-const plans = [
-  {
-    name: 'Essentiel',
-    price: '990€',
-    priceUnit: '/mois',
-    subtitle: 'Pour bien démarrer',
-    subtitle2: 'Idéal pour les PME qui veulent structurer leurs données ESG',
-    features: [
-      'Rapport VSME + Diagnostic PME',
-      '79 indicateurs guidés pas à pas',
-      '17 modèles Excel prêts à l\'emploi',
-      'Import/Export Excel illimité',
-      'Stockage de vos justificatifs',
-      '5 utilisateurs inclus',
-      'Support par email',
-    ],
-    cta: 'Essayer gratuitement',
-    ctaStyle: 'primary' as const,
-    highlighted: false,
-  },
-  {
-    name: 'Professionnel',
-    price: '2 490€',
-    priceUnit: '/mois',
-    subtitle: 'Reporting complet',
-    subtitle2: 'Pour les entreprises qui veulent aller plus loin sur tous les sujets ESG',
-    features: [
-      'Tous les 11 parcours inclus',
-      'Bilan Carbone complet',
-      'Rapports CSRD',
-      'Questionnaire bancaire ESG',
-      'Connexion à votre logiciel comptable',
-      'Rapports générés par l\'IA',
-      '20 utilisateurs inclus',
-      'Support prioritaire + accompagnement',
-    ],
-    cta: 'Essayer gratuitement',
-    ctaStyle: 'primary' as const,
-    highlighted: true,
-  },
-  {
-    name: 'Enterprise',
-    price: 'Sur mesure',
-    priceUnit: '',
-    subtitle: 'Grands groupes',
-    subtitle2: 'Pour les groupes multi-sites, cabinets de conseil et auditeurs',
-    features: [
-      'Utilisateurs illimités',
-      'Parcours personnalisés',
-      'Mode Audit (lecture + vérification)',
-      'IA en mode Conseil',
-      'API pour vos outils internes',
-      'Consolidation multi-sites',
-      'Interlocuteur dédié',
-    ],
-    cta: 'Nous contacter',
-    ctaStyle: 'outline' as const,
-    highlighted: false,
-  },
+const includes = [
+  'Accès complet à la plateforme',
+  'Tous les parcours ESG (VSME, Bilan Carbone, CSRD…)',
+  'Import Excel illimité',
+  'Stockage de vos justificatifs',
+  'Utilisateurs illimités',
 ]
 
 export default function PricingSection() {
@@ -71,87 +18,62 @@ export default function PricingSection() {
             Tarifs
           </p>
           <h2 className="text-3xl lg:text-4xl font-bold text-center mb-4 max-w-3xl mx-auto">
-            Un prix simple, adapté à vos besoins
+            Un accompagnement adapté à votre maturité ESG
           </h2>
           <p className="text-center text-muted mb-12 max-w-2xl mx-auto">
-            Pas de frais cachés. Commencez petit, évoluez à votre rythme.
+            Un accompagnement sur mesure, adapté à votre niveau de maturité ESG.
           </p>
         </div>
 
-        {/* Pricing cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-          {plans.map((plan) => (
-            <div
-              key={plan.name}
-              className={`bg-card rounded-xl p-8 relative ${
-                plan.highlighted
-                  ? 'border-2 border-primary'
-                  : 'border border-border'
-              }`}
-            >
-              {plan.highlighted && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full">
-                  Le plus populaire
-                </span>
-              )}
+        {/* Single pricing card */}
+        <div className="max-w-2xl mx-auto">
+          <div className="bg-card rounded-xl border-2 border-primary p-10 text-center">
+            <p className="text-sm font-semibold text-primary mb-6 uppercase tracking-wider">
+              Plateforme + Accompagnement
+            </p>
 
-              <p className="text-sm font-semibold text-primary mb-4">
-                {plan.name}
-              </p>
-
-              <div className="mb-2">
-                <span className="text-4xl font-bold">{plan.price}</span>
-                {plan.priceUnit && (
-                  <span className="text-muted">{plan.priceUnit}</span>
-                )}
-              </div>
-
-              <p className="font-medium text-sm mb-1">{plan.subtitle}</p>
-              <p className="text-muted text-xs mb-6">{plan.subtitle2}</p>
-
-              <hr className="border-border mb-6" />
-
-              <ul className="space-y-3 mb-8">
-                {plan.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-2">
-                    <Check
-                      size={18}
-                      className="text-primary shrink-0 mt-0.5"
-                    />
-                    <span className="text-sm">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-
-              {plan.ctaStyle === 'primary' ? (
-                <a
-                  href="#demo"
-                  className="block text-center bg-primary text-white rounded-lg px-6 py-3 font-medium hover:bg-primary-dark transition-colors text-sm w-full"
-                >
-                  {plan.cta}
-                </a>
-              ) : (
-                <a
-                  href="#contact"
-                  className="block text-center border border-primary text-primary rounded-lg px-6 py-3 font-medium hover:bg-primary-light transition-colors text-sm w-full"
-                >
-                  {plan.cta}
-                </a>
-              )}
+            <div className="mb-2">
+              <span className="text-muted text-lg">À partir de </span>
+              <span className="text-5xl font-bold">1 100€</span>
+              <span className="text-muted text-lg"> /mois</span>
             </div>
-          ))}
+
+            <p className="text-muted text-sm mb-8">
+              Tarif ajusté sur devis selon votre profil
+            </p>
+
+            <hr className="border-border mb-8" />
+
+            <h3 className="font-semibold text-sm mb-4 text-left">Toujours inclus :</h3>
+            <ul className="space-y-3 mb-8">
+              {includes.map((feature) => (
+                <li key={feature} className="flex items-start gap-2 text-left">
+                  <Check
+                    size={18}
+                    className="text-primary shrink-0 mt-0.5"
+                  />
+                  <span className="text-sm">{feature}</span>
+                </li>
+              ))}
+            </ul>
+
+            <a
+              href="#demo"
+              className="inline-flex items-center gap-2 bg-primary text-white rounded-lg px-8 py-3.5 font-medium hover:bg-primary-dark transition-colors text-sm"
+            >
+              Demander un devis
+              <ArrowRight size={18} />
+            </a>
+          </div>
         </div>
 
-        {/* Footer note */}
-        <div className="text-center mt-12">
-          <div className="flex items-center justify-center gap-2 mb-2">
-            <Sparkles size={18} className="text-primary" />
-            <p className="font-semibold text-sm">
-              14 jours d'essai gratuit sur tous les plans
-            </p>
-          </div>
-          <p className="text-muted text-xs">
-            -20% sur l'abonnement annuel
+        {/* Why quote-based */}
+        <div className="max-w-2xl mx-auto mt-10 text-center">
+          <p className="text-muted text-sm leading-relaxed">
+            <span className="font-semibold text-foreground">Pourquoi un devis ?</span> Chaque entreprise a un niveau de maturité ESG différent.
+            Certaines ont juste besoin d'un accès à la plateforme, d'autres d'un consultant qui vérifie leurs données,
+            d'autres encore d'un véritable accompagnement stratégique. Le devis nous permet d'évaluer vos besoins
+            et de vous proposer le bon niveau d'accompagnement — ni plus, ni moins.
           </p>
         </div>
       </div>

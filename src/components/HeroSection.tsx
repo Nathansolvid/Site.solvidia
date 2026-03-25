@@ -41,12 +41,15 @@ export default function HeroSection() {
 
           {/* Right column */}
           <div className="mt-12 lg:mt-0">
-            <div className="bg-primary-light rounded-2xl p-4 relative">
-              <img
-                src="/images/screenshot-dashboard.png"
-                alt="Dashboard Solvid.IA"
-                className="rounded-xl shadow-lg w-full"
-              />
+            <div className="bg-primary-light rounded-2xl p-4 relative overflow-hidden">
+              <div className="rounded-xl overflow-hidden shadow-lg">
+                <img
+                  src="/images/screenshot-dashboard.png"
+                  alt="Dashboard Solvid.IA"
+                  className="w-full block"
+                  style={{ marginTop: '-3%' }}
+                />
+              </div>
             </div>
           </div>
         </div>
