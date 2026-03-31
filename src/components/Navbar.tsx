@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 import Logo from './Logo'
+import { useDemoModal } from '../App'
 
 const navLinks = [
   { label: 'Solution', href: '#solution' },
@@ -12,6 +13,7 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const { openDemo } = useDemoModal()
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10)
@@ -26,12 +28,10 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-[72px]">
-        {/* Logo */}
         <a href="#hero" className="shrink-0">
           <Logo className="h-11 w-auto" variant="dark" />
         </a>
 
-        {/* Desktop nav links */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
@@ -44,15 +44,13 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Desktop CTA */}
-        <a
-          href="#demo"
-          className="hidden md:inline-flex bg-primary text-white rounded-lg px-5 py-2.5 font-medium hover:bg-primary-dark transition-colors text-sm"
+        <button
+          onClick={openDemo}
+          className="hidden md:inline-flex bg-primary text-white rounded-lg px-5 py-2.5 font-medium hover:bg-primary-dark transition-colors text-sm cursor-pointer"
         >
           Demander une démo
-        </a>
+        </button>
 
-        {/* Mobile hamburger */}
         <button
           className="md:hidden p-2 text-foreground"
           onClick={() => setMobileOpen(!mobileOpen)}
@@ -62,7 +60,6 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile dropdown */}
       {mobileOpen && (
         <div className="md:hidden border-t border-border bg-white px-6 pb-6 pt-4 space-y-4">
           {navLinks.map((link) => (
@@ -75,13 +72,12 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
-          <a
-            href="#demo"
-            onClick={() => setMobileOpen(false)}
-            className="block text-center bg-primary text-white rounded-lg px-5 py-2.5 font-medium hover:bg-primary-dark transition-colors text-sm"
+          <button
+            onClick={() => { setMobileOpen(false); openDemo() }}
+            className="block w-full text-center bg-primary text-white rounded-lg px-5 py-2.5 font-medium hover:bg-primary-dark transition-colors text-sm cursor-pointer"
           >
             Demander une démo
-          </a>
+          </button>
         </div>
       )}
     </nav>

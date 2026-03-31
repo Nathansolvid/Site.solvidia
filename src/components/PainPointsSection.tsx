@@ -1,4 +1,5 @@
 import { FileSpreadsheet, ShieldAlert, Clock } from 'lucide-react'
+import { useScrollReveal } from '../hooks/useScrollReveal'
 
 const painPoints = [
   {
@@ -22,11 +23,14 @@ const painPoints = [
 ]
 
 export default function PainPointsSection() {
+  const headerRef = useScrollReveal<HTMLDivElement>(0)
+  const cardsRef = useScrollReveal<HTMLDivElement>(200)
+
   return (
-    <section id="problemes" className="py-20 bg-background">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="problemes" className="min-h-screen flex items-center bg-background">
+      <div className="max-w-7xl mx-auto px-6 py-20 w-full">
         {/* Header */}
-        <div className="text-center mb-12">
+        <div ref={headerRef} className="text-center mb-12">
           <p className="text-sm text-primary font-semibold uppercase tracking-wider mb-3">
             Le problème
           </p>
@@ -39,7 +43,7 @@ export default function PainPointsSection() {
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {painPoints.map((point) => {
             const Icon = point.icon
             return (

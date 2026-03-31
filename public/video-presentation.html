@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solvid.ia - Présentation</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    font-family: 'DM Sans', sans-serif;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #0D3B27;
+    color: white;
+  }
+  #stage {
+    width: 1920px;
+    height: 1080px;
+    position: absolute;
+    transform-origin: top left;
+    overflow: hidden;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease, visibility 0s 0.8s;
+    padding: 80px;
+  }
+  .slide.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition: opacity 0.8s ease, transform 0.8s ease, visibility 0s 0s;
+    z-index: 10;
+  }
+  .slide.exit {
+    opacity: 0;
+    visibility: visible;
+    transform: translateY(-30px);
+    transition: opacity 0.8s ease, transform 0.8s ease, visibility 0s 0.8s;
+    z-index: 5;
+  }
+
+  /* Slide 1: Accroche */
+  .slide-1 { background: #0D3B27; }
+  .slide-1 .logo {
+    font-size: 42px;
+    font-weight: 600;
+    margin-bottom: 80px;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  .slide-1 .logo .green { color: #2D7A55; }
+  .slide-1 .logo.show { opacity: 1; transform: translateY(0); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .slide-1 h1 {
+    font-size: 72px;
+    font-weight: 700;
+    text-align: center;
+    max-width: 1200px;
+    line-height: 1.2;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  .slide-1 h1.show { opacity: 1; transform: translateY(0); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .slide-1 h1 em {
+    font-style: normal;
+    color: #2D7A55;
+  }
+  .slide-1 .subtitle {
+    font-size: 28px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 30px;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  .slide-1 .subtitle.show { opacity: 1; transform: translateY(0); transition: opacity 0.8s ease, transform 0.8s ease; }
+
+  /* Slide 2: Le Problème */
+  .slide-2 { background: #ffffff; color: #1A2E24; }
+  .slide-2 .label {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2D7A55;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 30px;
+  }
+  .slide-2 h2 {
+    font-size: 58px;
+    font-weight: 700;
+    text-align: center;
+    max-width: 1100px;
+    margin-bottom: 70px;
+  }
+  .slide-2 .problems {
+    display: flex;
+    gap: 50px;
+    max-width: 1400px;
+  }
+  .slide-2 .problem-card {
+    background: #F0F4F1;
+    border-radius: 20px;
+    padding: 50px 40px;
+    flex: 1;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  .slide-2 .problem-card.show {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .slide-2 .problem-icon {
+    width: 64px;
+    height: 64px;
+    background: #2D7A55;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    font-size: 28px;
+  }
+  .slide-2 .problem-card h3 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .slide-2 .problem-card p {
+    font-size: 18px;
+    color: #8aab98;
+    line-height: 1.6;
+  }
+
+  /* Slide 3: La Solution */
+  .slide-3 { background: #0D3B27; }
+  .slide-3 .label {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2D7A55;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 30px;
+  }
+  .slide-3 h2 {
+    font-size: 58px;
+    font-weight: 700;
+    text-align: center;
+    max-width: 1200px;
+    margin-bottom: 20px;
+  }
+  .slide-3 h2 em { font-style: normal; color: #2D7A55; }
+  .slide-3 .sub {
+    font-size: 24px;
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    max-width: 800px;
+    margin-bottom: 60px;
+  }
+  .slide-3 .features {
+    display: flex;
+    gap: 40px;
+  }
+  .slide-3 .feature {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    width: 280px;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  .slide-3 .feature.show {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .slide-3 .feature-icon {
+    font-size: 40px;
+    margin-bottom: 16px;
+  }
+  .slide-3 .feature h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .slide-3 .feature p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* Slide 4: Dashboard */
+  .slide-4 { background: #ffffff; color: #1A2E24; }
+  .slide-4 .label {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2D7A55;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 30px;
+  }
+  .slide-4 h2 {
+    font-size: 48px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  .slide-4 .dashboard-frame {
+    background: #F0F4F1;
+    border-radius: 24px;
+    padding: 20px;
+    max-width: 1400px;
+    width: 100%;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.1);
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  .slide-4 .dashboard-frame.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .slide-4 .dashboard-frame img {
+    width: 100%;
+    border-radius: 16px;
+    display: block;
+  }
+
+  /* Slide 5: Parcours */
+  .slide-5 { background: #F0F4F1; color: #1A2E24; }
+  .slide-5 .label {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2D7A55;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 30px;
+  }
+  .slide-5 h2 {
+    font-size: 54px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  .slide-5 .parcours-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    width: 100%;
+  }
+  .slide-5 .parcours-card {
+    background: white;
+    border-radius: 16px;
+    padding: 36px;
+    border: 1px solid #E2EDE7;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  .slide-5 .parcours-card.show {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .slide-5 .parcours-card .tag {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+  }
+  .slide-5 .tag-env { background: #dcfce7; color: #166534; }
+  .slide-5 .tag-social { background: #dbeafe; color: #1e40af; }
+  .slide-5 .tag-gov { background: #f3e8ff; color: #6b21a8; }
+  .slide-5 .tag-reg { background: #fef3c7; color: #92400e; }
+  .slide-5 .parcours-card h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .slide-5 .parcours-card p {
+    font-size: 16px;
+    color: #8aab98;
+    line-height: 1.5;
+  }
+  .slide-5 .more {
+    font-size: 20px;
+    color: #8aab98;
+    margin-top: 30px;
+    opacity: 0;
+  }
+  .slide-5 .more.show {
+    opacity: 1;
+    transition: opacity 0.6s ease;
+  }
+
+  /* Slide 6: Logos confiance */
+  .slide-6 { background: #0D3B27; }
+  .slide-6 .label {
+    font-size: 18px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 60px;
+  }
+  .slide-6 .logos-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 50px 80px;
+    max-width: 1200px;
+    align-items: center;
+    justify-items: center;
+  }
+  .slide-6 .logo-item {
+    height: 50px;
+    opacity: 0;
+    filter: brightness(0) invert(1);
+  }
+  .slide-6 .logo-item.show {
+    opacity: 0.6;
+    transition: opacity 0.5s ease;
+  }
+
+  /* Slide 7: CTA Final */
+  .slide-7 { background: #0D3B27; }
+  .slide-7 .logo-final {
+    font-size: 80px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  .slide-7 .logo-final .green { color: #2D7A55; }
+  .slide-7 .logo-final.show { opacity: 1; transform: translateY(0); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .slide-7 .tagline {
+    font-size: 30px;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 50px;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  .slide-7 .tagline.show { opacity: 1; transform: translateY(0); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .slide-7 .cta-btn {
+    background: #2D7A55;
+    color: white;
+    font-size: 24px;
+    font-weight: 600;
+    padding: 20px 50px;
+    border-radius: 14px;
+    border: none;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  .slide-7 .cta-btn.show { opacity: 1; transform: translateY(0); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .slide-7 .url {
+    font-size: 20px;
+    color: rgba(255,255,255,0.4);
+    margin-top: 30px;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  .slide-7 .url.show { opacity: 1; transform: translateY(0); transition: opacity 0.8s ease, transform 0.8s ease; }
+
+  /* Progress bar */
+  .progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: #2D7A55;
+    z-index: 100;
+    transition: width 0.3s linear;
+  }
+
+  /* Timer display */
+  .timer {
+    position: fixed;
+    bottom: 30px;
+    right: 40px;
+    font-size: 16px;
+    color: rgba(255,255,255,0.3);
+    z-index: 100;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Controls */
+  .controls {
+    position: fixed;
+    bottom: 30px;
+    left: 40px;
+    z-index: 100;
+    display: flex;
+    gap: 12px;
+  }
+  .controls button {
+    background: rgba(255,255,255,0.15);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .controls button:hover { background: rgba(255,255,255,0.25); }
+  .controls.hidden { display: none; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+<div class="timer" id="timer">0:00 / 1:15</div>
+<div class="controls" id="controls">
+  <button onclick="startPresentation()">Lancer la présentation</button>
+</div>
+
+<div id="stage">
+<!-- Slide 1: Accroche (0-5s) -->
+<div class="slide slide-1" id="slide-1">
+  <div class="logo">Solvid<span class="green">.ia</span></div>
+  <h1>Vos données ESG sont partout.<br><em>Sauf là où il faut.</em></h1>
+  <p class="subtitle">La plateforme ESG pour PME et ETI</p>
+</div>
+
+<!-- Slide 2: Le Problème (5-15s) -->
+<div class="slide slide-2" id="slide-2">
+  <p class="label">Le problème</p>
+  <h2>Gérer ses données ESG, c'est compliqué</h2>
+  <div class="problems">
+    <div class="problem-card" id="p1">
+      <div class="problem-icon">&#128203;</div>
+      <h3>Données éparpillées</h3>
+      <p>Des dizaines de fichiers Excel, emails et documents différents. Impossible de s'y retrouver.</p>
+    </div>
+    <div class="problem-card" id="p2">
+      <div class="problem-icon">&#128274;</div>
+      <h3>Aucune traçabilité</h3>
+      <p>L'auditeur demande d'où vient un chiffre ? Bonne chance pour le retrouver.</p>
+    </div>
+    <div class="problem-card" id="p3">
+      <div class="problem-icon">&#9200;</div>
+      <h3>Trop de temps perdu</h3>
+      <p>Des jours entiers à copier-coller des données d'un fichier à l'autre.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Slide 3: La Solution (15-25s) -->
+<div class="slide slide-3" id="slide-3">
+  <p class="label">La solution</p>
+  <h2><em>Un seul endroit</em> pour toutes vos données ESG</h2>
+  <p class="sub">Importez vos Excel, connectez votre ERP, ou saisissez directement. Tout est centralisé, tracé et exportable.</p>
+  <div class="features">
+    <div class="feature" id="f1">
+      <div class="feature-icon">&#128229;</div>
+      <h3>Import Excel</h3>
+      <p>17 modèles fournis, prêts à remplir</p>
+    </div>
+    <div class="feature" id="f2">
+      <div class="feature-icon">&#128268;</div>
+      <h3>Connexion ERP</h3>
+      <p>SAP, Oracle, Sage... automatiquement</p>
+    </div>
+    <div class="feature" id="f3">
+      <div class="feature-icon">&#128203;</div>
+      <h3>Traçabilité</h3>
+      <p>Chaque donnée reliée à sa source</p>
+    </div>
+    <div class="feature" id="f4">
+      <div class="feature-icon">&#128196;</div>
+      <h3>Export 1 clic</h3>
+      <p>PDF ou Excel, prêt pour l'audit</p>
+    </div>
+  </div>
+</div>
+
+<!-- Slide 4: Dashboard (25-40s) -->
+<div class="slide slide-4" id="slide-4">
+  <p class="label">La plateforme</p>
+  <h2>Tout est centralisé et organisé</h2>
+  <div class="dashboard-frame" id="dashboard">
+    <img src="/images/screenshot-dashboard.png" alt="Dashboard Solvid.ia" style="margin-top: -4%;">
+  </div>
+</div>
+
+<!-- Slide 5: Parcours (40-50s) -->
+<div class="slide slide-5" id="slide-5">
+  <p class="label">11 parcours disponibles</p>
+  <h2>Choisissez ce dont vous avez besoin</h2>
+  <div class="parcours-grid">
+    <div class="parcours-card" id="pc1">
+      <span class="tag tag-reg">Réglementaire</span>
+      <h3>VSME</h3>
+      <p>Le rapport de durabilité pour PME. 79 indicateurs guidés.</p>
+    </div>
+    <div class="parcours-card" id="pc2">
+      <span class="tag tag-env">Environnement</span>
+      <h3>Bilan Carbone</h3>
+      <p>Mesurez votre empreinte carbone complète.</p>
+    </div>
+    <div class="parcours-card" id="pc3">
+      <span class="tag tag-social">Social</span>
+      <h3>Diagnostic Social</h3>
+      <p>Emploi, formation, sécurité au travail.</p>
+    </div>
+    <div class="parcours-card" id="pc4">
+      <span class="tag tag-gov">Gouvernance</span>
+      <h3>Gouvernance</h3>
+      <p>Éthique, conformité, gestion des risques.</p>
+    </div>
+    <div class="parcours-card" id="pc5">
+      <span class="tag tag-env">Environnement</span>
+      <h3>Diagnostic ESG</h3>
+      <p>Un bilan ESG rapide et complet.</p>
+    </div>
+    <div class="parcours-card" id="pc6">
+      <span class="tag tag-reg">Réglementaire</span>
+      <h3>Questionnaire Bancaire</h3>
+      <p>Réponses ESG pour banques et investisseurs.</p>
+    </div>
+  </div>
+  <p class="more" id="more">+ 5 autres parcours spécialisés</p>
+</div>
+
+<!-- Slide 6: Logos (50-60s) -->
+<div class="slide slide-6" id="slide-6">
+  <p class="label">Ils nous font confiance</p>
+  <div class="logos-grid">
+    <img class="logo-item" id="l1" src="/images/logos/alan.svg" alt="Alan">
+    <img class="logo-item" id="l2" src="/images/logos/mistral.svg" alt="Mistral AI">
+    <img class="logo-item" id="l3" src="/images/logos/bpifrance.svg" alt="Bpifrance">
+    <img class="logo-item" id="l4" src="/images/logos/doctolib.svg" alt="Doctolib">
+    <img class="logo-item" id="l5" src="/images/logos/qonto.svg" alt="Qonto">
+    <img class="logo-item" id="l6" src="/images/logos/schneider.svg" alt="Schneider Electric">
+    <img class="logo-item" id="l7" src="/images/logos/danone.svg" alt="Danone">
+    <img class="logo-item" id="l8" src="/images/logos/capgemini.svg" alt="Capgemini">
+    <img class="logo-item" id="l9" src="/images/logos/lvmh.svg" alt="LVMH">
+    <img class="logo-item" id="l10" src="/images/logos/veolia.svg" alt="Veolia">
+    <img class="logo-item" id="l11" src="/images/logos/saintgobain.svg" alt="Saint-Gobain">
+  </div>
+</div>
+
+<!-- Slide 7: CTA Final (60-75s) -->
+<div class="slide slide-7" id="slide-7">
+  <div class="logo-final">Solvid<span class="green">.ia</span></div>
+  <p class="tagline">La plateforme ESG pensée pour les PME et ETI</p>
+  <div class="cta-btn">Demandez votre démo gratuite</div>
+  <p class="url">solvid.ia</p>
+</div>
+
+</div><!-- end #stage -->
+
+<script>
+// Auto-scale stage to fit viewport
+function scaleStage() {
+  const stage = document.getElementById('stage');
+  const scaleX = window.innerWidth / 1920;
+  const scaleY = window.innerHeight / 1080;
+  const scale = Math.min(scaleX, scaleY);
+  stage.style.transform = `scale(${scale})`;
+  stage.style.left = ((window.innerWidth - 1920 * scale) / 2) + 'px';
+  stage.style.top = ((window.innerHeight - 1080 * scale) / 2) + 'px';
+}
+scaleStage();
+window.addEventListener('resize', scaleStage);
+
+const TOTAL_DURATION = 75; // seconds
+let startTime = null;
+let animFrame = null;
+
+const timeline = [
+  // [time, action]
+  [0, () => showSlide('slide-1')],
+  [0.3, () => document.querySelector('.slide-1 .logo').classList.add('show')],
+  [0.8, () => document.querySelector('.slide-1 h1').classList.add('show')],
+  [1.3, () => document.querySelector('.slide-1 .subtitle').classList.add('show')],
+  [5, () => { hideSlide('slide-1'); showSlide('slide-2'); }],
+  [6, () => document.getElementById('p1').classList.add('show')],
+  [6.5, () => document.getElementById('p2').classList.add('show')],
+  [7, () => document.getElementById('p3').classList.add('show')],
+  [15, () => { hideSlide('slide-2'); showSlide('slide-3'); }],
+  [16, () => document.getElementById('f1').classList.add('show')],
+  [16.5, () => document.getElementById('f2').classList.add('show')],
+  [17, () => document.getElementById('f3').classList.add('show')],
+  [17.5, () => document.getElementById('f4').classList.add('show')],
+  [25, () => { hideSlide('slide-3'); showSlide('slide-4'); }],
+  [26, () => document.getElementById('dashboard').classList.add('show')],
+  [40, () => { hideSlide('slide-4'); showSlide('slide-5'); }],
+  [41, () => document.getElementById('pc1').classList.add('show')],
+  [41.3, () => document.getElementById('pc2').classList.add('show')],
+  [41.6, () => document.getElementById('pc3').classList.add('show')],
+  [42, () => document.getElementById('pc4').classList.add('show')],
+  [42.3, () => document.getElementById('pc5').classList.add('show')],
+  [42.6, () => document.getElementById('pc6').classList.add('show')],
+  [43.5, () => document.getElementById('more').classList.add('show')],
+  [50, () => { hideSlide('slide-5'); showSlide('slide-6'); }],
+  [50.5, () => document.getElementById('l1').classList.add('show')],
+  [51, () => document.getElementById('l2').classList.add('show')],
+  [51.5, () => document.getElementById('l3').classList.add('show')],
+  [52, () => document.getElementById('l4').classList.add('show')],
+  [52.5, () => document.getElementById('l5').classList.add('show')],
+  [53, () => document.getElementById('l6').classList.add('show')],
+  [53.5, () => document.getElementById('l7').classList.add('show')],
+  [54, () => document.getElementById('l8').classList.add('show')],
+  [54.5, () => document.getElementById('l9').classList.add('show')],
+  [55, () => document.getElementById('l10').classList.add('show')],
+  [55.5, () => document.getElementById('l11').classList.add('show')],
+  [60, () => { hideSlide('slide-6'); showSlide('slide-7'); }],
+  [60.3, () => document.querySelector('.slide-7 .logo-final').classList.add('show')],
+  [60.8, () => document.querySelector('.slide-7 .tagline').classList.add('show')],
+  [61.2, () => document.querySelector('.slide-7 .cta-btn').classList.add('show')],
+  [61.5, () => document.querySelector('.slide-7 .url').classList.add('show')],
+];
+
+let executed = new Set();
+
+function showSlide(id) {
+  document.getElementById(id).classList.add('active');
+  document.getElementById(id).classList.remove('exit');
+}
+
+function hideSlide(id) {
+  document.getElementById(id).classList.remove('active');
+  document.getElementById(id).classList.add('exit');
+}
+
+function updateTimer(elapsed) {
+  const mins = Math.floor(elapsed / 60);
+  const secs = Math.floor(elapsed % 60);
+  const totalMins = Math.floor(TOTAL_DURATION / 60);
+  const totalSecs = TOTAL_DURATION % 60;
+  document.getElementById('timer').textContent =
+    `${mins}:${String(secs).padStart(2, '0')} / ${totalMins}:${String(totalSecs).padStart(2, '0')}`;
+}
+
+function tick() {
+  const elapsed = (Date.now() - startTime) / 1000;
+
+  // Progress bar
+  const pct = Math.min((elapsed / TOTAL_DURATION) * 100, 100);
+  document.getElementById('progress').style.width = pct + '%';
+
+  // Timer
+  updateTimer(elapsed);
+
+  // Execute timeline actions
+  for (const [time, action] of timeline) {
+    if (elapsed >= time && !executed.has(time)) {
+      executed.add(time);
+      action();
+    }
+  }
+
+  if (elapsed < TOTAL_DURATION) {
+    animFrame = requestAnimationFrame(tick);
+  }
+}
+
+function startPresentation() {
+  document.getElementById('controls').classList.add('hidden');
+  startTime = Date.now();
+  executed = new Set();
+  tick();
+}
+
+// Keyboard shortcut: Space to start
+document.addEventListener('keydown', (e) => {
+  if (e.code === 'Space') {
+    e.preventDefault();
+    startPresentation();
+  }
+});
+</script>
+</body>
+</html>

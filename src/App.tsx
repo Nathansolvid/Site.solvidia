@@ -1,5 +1,7 @@
+import { useState, createContext, useContext } from 'react'
 import Navbar from './components/Navbar'
 import HeroSection from './components/HeroSection'
+import LogoMarquee from './components/LogoMarquee'
 import PainPointsSection from './components/PainPointsSection'
 import DataRoomSection from './components/DataRoomSection'
 import PacksSection from './components/PacksSection'
@@ -9,24 +11,34 @@ import TestimonialsSection from './components/TestimonialsSection'
 import PricingSection from './components/PricingSection'
 import FinalCtaSection from './components/FinalCtaSection'
 import Footer from './components/Footer'
+import DemoModal from './components/DemoModal'
+
+export const DemoContext = createContext<{ openDemo: () => void }>({ openDemo: () => {} })
+export const useDemoModal = () => useContext(DemoContext)
 
 function App() {
+  const [demoOpen, setDemoOpen] = useState(false)
+
   return (
-    <div className="min-h-screen">
-      <Navbar />
-      <main>
-        <HeroSection />
-        <PainPointsSection />
-        <DataRoomSection />
-        <PacksSection />
-        <ExcelImportSection />
-        <BenefitsSection />
-        <TestimonialsSection />
-        <PricingSection />
-        <FinalCtaSection />
-      </main>
-      <Footer />
-    </div>
+    <DemoContext.Provider value={{ openDemo: () => setDemoOpen(true) }}>
+      <div className="min-h-screen">
+        <Navbar />
+        <main>
+          <HeroSection />
+          <LogoMarquee />
+          <PainPointsSection />
+          <DataRoomSection />
+          <PacksSection />
+          <ExcelImportSection />
+          <BenefitsSection />
+          <TestimonialsSection />
+          <PricingSection />
+          <FinalCtaSection />
+        </main>
+        <Footer />
+        <DemoModal open={demoOpen} onClose={() => setDemoOpen(false)} />
+      </div>
+    </DemoContext.Provider>
   )
 }
 

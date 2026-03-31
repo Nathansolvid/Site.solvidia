@@ -1,4 +1,5 @@
 import { Download, Link, Eye, FileOutput, Plug } from 'lucide-react'
+import { useScrollReveal } from '../hooks/useScrollReveal'
 
 const features = [
   {
@@ -34,11 +35,15 @@ const features = [
 ]
 
 export default function DataRoomSection() {
+  const headerRef = useScrollReveal<HTMLDivElement>(0)
+  const topRef = useScrollReveal<HTMLDivElement>(200)
+  const bottomRef = useScrollReveal<HTMLDivElement>(400)
+
   return (
-    <section id="solution" className="py-20">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="solution" className="min-h-screen flex items-center">
+      <div className="max-w-7xl mx-auto px-6 py-20 w-full">
         {/* Header */}
-        <div className="text-center mb-14">
+        <div ref={headerRef} className="text-center mb-14">
           <p className="text-sm text-primary font-semibold uppercase tracking-wider mb-3">
             La solution
           </p>
@@ -51,7 +56,7 @@ export default function DataRoomSection() {
         </div>
 
         {/* Top row: 2 highlighted cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-6">
+        <div ref={topRef} className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-6">
           {features.slice(0, 2).map((feature) => {
             const Icon = feature.icon
             return (
@@ -72,7 +77,7 @@ export default function DataRoomSection() {
         </div>
 
         {/* Bottom row: 3 smaller cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div ref={bottomRef} className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
           {features.slice(2).map((feature) => {
             const Icon = feature.icon
             return (

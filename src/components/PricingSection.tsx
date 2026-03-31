@@ -1,4 +1,6 @@
 import { Check, ArrowRight } from 'lucide-react'
+import { useDemoModal } from '../App'
+import { useScrollReveal } from '../hooks/useScrollReveal'
 
 const includes = [
   'Accès complet à la plateforme',
@@ -9,11 +11,15 @@ const includes = [
 ]
 
 export default function PricingSection() {
+  const { openDemo } = useDemoModal()
+  const headerRef = useScrollReveal<HTMLDivElement>(0)
+  const cardRef = useScrollReveal<HTMLDivElement>(200)
+
   return (
-    <section id="tarifs" className="py-20 bg-background">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="tarifs" className="min-h-screen flex items-center bg-background">
+      <div className="max-w-7xl mx-auto px-6 py-20 w-full">
         {/* Header */}
-        <div className="text-center mb-12">
+        <div ref={headerRef} className="text-center mb-12">
           <p className="text-sm text-primary font-semibold uppercase tracking-wider mb-3">
             Tarifs
           </p>
@@ -26,7 +32,7 @@ export default function PricingSection() {
         </div>
 
         {/* Single pricing card */}
-        <div className="max-w-2xl mx-auto">
+        <div ref={cardRef} className="max-w-2xl mx-auto">
           <div className="bg-card rounded-xl border-2 border-primary p-10 text-center">
             <p className="text-sm font-semibold text-primary mb-6 uppercase tracking-wider">
               Plateforme + Accompagnement
@@ -57,13 +63,13 @@ export default function PricingSection() {
               ))}
             </ul>
 
-            <a
-              href="#demo"
-              className="inline-flex items-center gap-2 bg-primary text-white rounded-lg px-8 py-3.5 font-medium hover:bg-primary-dark transition-colors text-sm"
+            <button
+              onClick={openDemo}
+              className="inline-flex items-center gap-2 bg-primary text-white rounded-lg px-8 py-3.5 font-medium hover:bg-primary-dark transition-colors text-sm cursor-pointer"
             >
               Demander un devis
               <ArrowRight size={18} />
-            </a>
+            </button>
           </div>
         </div>
 

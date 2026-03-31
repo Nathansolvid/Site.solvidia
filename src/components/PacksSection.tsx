@@ -7,6 +7,7 @@ import {
   Flame,
   type LucideIcon,
 } from 'lucide-react'
+import { useScrollReveal } from '../hooks/useScrollReveal'
 
 interface Workflow {
   icon: LucideIcon
@@ -62,11 +63,15 @@ const tagColors: Record<string, { bg: string; text: string }> = {
 }
 
 export default function PacksSection() {
+  const headerRef = useScrollReveal<HTMLDivElement>(0)
+  const featuredRef = useScrollReveal<HTMLDivElement>(200)
+  const gridRef = useScrollReveal<HTMLDivElement>(400)
+
   return (
-    <section id="parcours" className="py-20 bg-background">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="parcours" className="min-h-screen flex items-center bg-background">
+      <div className="max-w-7xl mx-auto px-6 py-20 w-full">
         {/* Header */}
-        <div className="text-center mb-12">
+        <div ref={headerRef} className="text-center mb-12">
           <p className="text-sm text-primary font-semibold uppercase tracking-wider mb-3">
             11 parcours disponibles
           </p>
@@ -79,7 +84,7 @@ export default function PacksSection() {
         </div>
 
         {/* Featured: VSME */}
-        <div className="max-w-4xl mx-auto mb-10">
+        <div ref={featuredRef} className="max-w-4xl mx-auto mb-10">
           <div className="bg-card rounded-xl border-2 border-primary p-8 relative overflow-hidden">
             <span className="absolute top-4 right-4 bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full">
               Le plus utilisé
@@ -113,7 +118,7 @@ export default function PacksSection() {
         </div>
 
         {/* Other workflows grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
           {workflows.slice(1).map((wf) => {
             const Icon = wf.icon
             const tag = tagColors[wf.tag]

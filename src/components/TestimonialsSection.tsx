@@ -1,4 +1,5 @@
 import { Star } from 'lucide-react'
+import { useScrollReveal } from '../hooks/useScrollReveal'
 
 const testimonials = [
   {
@@ -39,11 +40,14 @@ function Stars() {
 }
 
 export default function TestimonialsSection() {
+  const headerRef = useScrollReveal<HTMLDivElement>(0)
+  const cardsRef = useScrollReveal<HTMLDivElement>(200)
+
   return (
-    <section id="temoignages" className="py-20">
+    <section id="temoignages" className="min-h-screen flex items-center">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
-        <div className="text-center mb-12">
+        <div ref={headerRef} className="text-center mb-12">
           <p className="text-sm text-primary font-semibold uppercase tracking-wider mb-3">
             Témoignages
           </p>
@@ -53,7 +57,7 @@ export default function TestimonialsSection() {
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {testimonials.map((testimonial) => (
             <div
               key={testimonial.name}

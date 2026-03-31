@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 40" fill="white">
+  <!-- Distinctive V swoosh -->
+  <path d="M5 8 Q8 8 10.5 14 L20 34 Q20.5 35.2 21.5 35.2 Q22.5 35.2 23 34 L32.5 14 Q35 8 38 8 L35 8 Q33 8 31.5 11.5 L22 31 Q21.8 31.5 21.5 31.5 Q21.2 31.5 21 31 L11.5 11.5 Q10 8 8 8 Z"/>
+  <!-- eolia text -->
+  <text x="40" y="31" font-family="'Helvetica Neue', Arial, sans-serif" font-size="25" font-weight="500" letter-spacing="-0.5">eolia</text>
+</svg>
