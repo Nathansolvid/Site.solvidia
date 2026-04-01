@@ -27,7 +27,7 @@ export default function PricingSection() {
             Un accompagnement adapté à votre maturité ESG
           </h2>
           <p className="text-center text-muted mb-12 max-w-2xl mx-auto">
-            Un accompagnement sur mesure, adapté à votre niveau de maturité ESG.
+            Chaque entreprise est différente. Contactez-nous pour un accompagnement sur mesure.
           </p>
         </div>
 
@@ -39,13 +39,11 @@ export default function PricingSection() {
             </p>
 
             <div className="mb-2">
-              <span className="text-muted text-lg">À partir de </span>
-              <span className="text-5xl font-bold">1 100€</span>
-              <span className="text-muted text-lg"> /mois</span>
+              <span className="text-4xl font-bold">Tarifs sur demande</span>
             </div>
 
             <p className="text-muted text-sm mb-8">
-              Tarif ajusté sur devis selon votre profil
+              Adapté à votre taille, vos besoins et votre niveau de maturité ESG
             </p>
 
             <hr className="border-border mb-8" />
@@ -65,22 +63,12 @@ export default function PricingSection() {
 
             <button
               onClick={openDemo}
-              className="inline-flex items-center gap-2 bg-primary text-white rounded-lg px-8 py-3.5 font-medium hover:bg-primary-dark transition-colors text-sm cursor-pointer"
+              className="inline-flex items-center gap-2 bg-primary text-white rounded-xl px-8 py-3.5 font-semibold hover:bg-primary-dark transition-colors text-sm cursor-pointer"
             >
-              Demander un devis
+              Demander une démo
               <ArrowRight size={18} />
             </button>
           </div>
-        </div>
-
-        {/* Why quote-based */}
-        <div className="max-w-2xl mx-auto mt-10 text-center">
-          <p className="text-muted text-sm leading-relaxed">
-            <span className="font-semibold text-foreground">Pourquoi un devis ?</span> Chaque entreprise a un niveau de maturité ESG différent.
-            Certaines ont juste besoin d'un accès à la plateforme, d'autres d'un consultant qui vérifie leurs données,
-            d'autres encore d'un véritable accompagnement stratégique. Le devis nous permet d'évaluer vos besoins
-            et de vous proposer le bon niveau d'accompagnement — ni plus, ni moins.
-          </p>
         </div>
       </div>
     </section>

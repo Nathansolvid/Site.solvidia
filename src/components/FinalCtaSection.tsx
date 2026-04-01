@@ -20,7 +20,7 @@ export default function FinalCtaSection() {
             onClick={openDemo}
             className="inline-flex items-center gap-2 bg-white text-dark-green font-semibold rounded-lg px-6 py-3 hover:bg-white/90 transition-colors cursor-pointer"
           >
-            Essayer gratuitement &rarr;
+            Demander l'accès beta &rarr;
           </button>
           <button
             onClick={openDemo}
@@ -29,10 +29,6 @@ export default function FinalCtaSection() {
             Demander une démo
           </button>
         </div>
-
-        <p className="text-white/50 text-sm mt-6">
-          Essai gratuit 14 jours · Aucune carte bancaire requise
-        </p>
       </div>
     </section>
   )

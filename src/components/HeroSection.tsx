@@ -28,7 +28,7 @@ export default function HeroSection() {
                 onClick={openDemo}
                 className="inline-flex items-center gap-2 bg-primary text-white rounded-xl px-7 py-3.5 font-semibold text-base hover:bg-primary-dark transition-colors cursor-pointer shadow-lg shadow-primary/20"
               >
-                Demander une démo
+                Demander l'accès beta
                 <ArrowRight size={18} />
               </button>
               <a

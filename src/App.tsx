@@ -7,7 +7,7 @@ import DataRoomSection from './components/DataRoomSection'
 import PacksSection from './components/PacksSection'
 import ExcelImportSection from './components/ExcelImportSection'
 import BenefitsSection from './components/BenefitsSection'
-import TestimonialsSection from './components/TestimonialsSection'
+import BetaAccessSection from './components/TestimonialsSection'
 import PricingSection from './components/PricingSection'
 import FinalCtaSection from './components/FinalCtaSection'
 import Footer from './components/Footer'
@@ -31,7 +31,7 @@ function App() {
           <PacksSection />
           <ExcelImportSection />
           <BenefitsSection />
-          <TestimonialsSection />
+          <BetaAccessSection />
           <PricingSection />
           <FinalCtaSection />
         </main>

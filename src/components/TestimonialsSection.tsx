@@ -1,83 +1,67 @@
-import { Star } from 'lucide-react'
+import { useState } from 'react'
+import { ArrowRight, Sparkles } from 'lucide-react'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 
-const testimonials = [
-  {
-    initials: 'MC',
-    quote:
-      'Avant Solvid.ia, on passait 3 semaines à compiler les données de nos filiales. Maintenant, c\'est fait en 2 jours.',
-    name: 'Marie Chevallier',
-    title: 'Directrice RSE, Groupe industriel',
-  },
-  {
-    initials: 'PD',
-    quote:
-      'On réutilise nos réponses d\'un client à l\'autre. Notre base de preuves grandit à chaque projet, c\'est un vrai gain de temps.',
-    name: 'Pierre Dubois',
-    title: 'DG, PME sous-traitante',
-  },
-  {
-    initials: 'SL',
-    quote:
-      'Pour nos audits ESG, on peut enfin présenter une documentation complète et bien organisée au régulateur.',
-    name: 'Sophie Lemaire',
-    title: 'Responsable Risques, Banque régionale',
-  },
-]
-
-function Stars() {
-  return (
-    <div className="flex gap-0.5">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <Star
-          key={i}
-          size={16}
-          className="text-yellow-400 fill-yellow-400"
-        />
-      ))}
-    </div>
-  )
-}
-
-export default function TestimonialsSection() {
+export default function BetaAccessSection() {
+  const [email, setEmail] = useState('')
+  const [submitted, setSubmitted] = useState(false)
   const headerRef = useScrollReveal<HTMLDivElement>(0)
-  const cardsRef = useScrollReveal<HTMLDivElement>(200)
+  const formRef = useScrollReveal<HTMLDivElement>(200)
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (email) setSubmitted(true)
+  }
 
   return (
-    <section id="temoignages" className="min-h-screen flex items-center">
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Header */}
-        <div ref={headerRef} className="text-center mb-12">
-          <p className="text-sm text-primary font-semibold uppercase tracking-wider mb-3">
-            Témoignages
-          </p>
+    <section id="beta" className="min-h-screen flex items-center">
+      <div className="max-w-7xl mx-auto px-6 py-20 w-full">
+        <div ref={headerRef} className="text-center mb-10">
+          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary rounded-full px-4 py-1.5 text-sm font-semibold mb-6">
+            <Sparkles size={16} />
+            Accès limité
+          </div>
           <h2 className="text-3xl lg:text-4xl font-bold text-center mb-4 max-w-3xl mx-auto">
-            Ils utilisent déjà Solvid.ia
+            Rejoignez les premiers à tester Solvid.ia
           </h2>
+          <p className="text-center text-muted mb-4 max-w-xl mx-auto">
+            Accès limité — inscrivez-vous sur liste d'attente pour découvrir la plateforme en avant-première.
+          </p>
         </div>
 
-        {/* Cards */}
-        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-          {testimonials.map((testimonial) => (
-            <div
-              key={testimonial.name}
-              className="bg-card rounded-xl border border-border p-8"
-            >
-              <Stars />
-              <p className="text-foreground text-sm mt-4 mb-6 italic">
-                &ldquo;{testimonial.quote}&rdquo;
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-semibold text-sm">
-                  {testimonial.initials}
-                </div>
-                <div>
-                  <p className="font-semibold text-sm">{testimonial.name}</p>
-                  <p className="text-muted text-xs">{testimonial.title}</p>
-                </div>
+        <div ref={formRef} className="max-w-lg mx-auto">
+          {!submitted ? (
+            <form onSubmit={handleSubmit} className="flex gap-3">
+              <input
+                type="email"
+                required
+                placeholder="votre@email.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="flex-1 border border-border rounded-xl px-5 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary bg-white"
+              />
+              <button
+                type="submit"
+                className="inline-flex items-center gap-2 bg-primary text-white rounded-xl px-6 py-3.5 font-semibold text-sm hover:bg-primary-dark transition-colors cursor-pointer shrink-0"
+              >
+                Rejoindre la liste
+                <ArrowRight size={16} />
+              </button>
+            </form>
+          ) : (
+            <div className="text-center bg-primary/5 rounded-2xl p-8 border border-primary/10">
+              <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Sparkles size={24} className="text-primary" />
               </div>
+              <h3 className="font-bold text-lg mb-2">Vous êtes sur la liste !</h3>
+              <p className="text-muted text-sm">
+                Nous vous contacterons dès que votre accès sera prêt.
+              </p>
             </div>
-          ))}
+          )}
+          <p className="text-center text-muted text-xs mt-4">
+            Aucun spam. Nous vous contacterons uniquement pour votre accès beta.
+          </p>
         </div>
       </div>
     </section>
