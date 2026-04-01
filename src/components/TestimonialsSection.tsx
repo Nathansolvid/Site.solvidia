@@ -1,16 +1,33 @@
 import { useState } from 'react'
-import { ArrowRight, Sparkles } from 'lucide-react'
+import { ArrowRight, Sparkles, Loader2 } from 'lucide-react'
 import { useScrollReveal } from '../hooks/useScrollReveal'
+import { submitForm, FORMSPREE_WAITLIST_ID } from '../lib/formspree'
 
 export default function BetaAccessSection() {
   const [email, setEmail] = useState('')
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
   const headerRef = useScrollReveal<HTMLDivElement>(0)
   const formRef = useScrollReveal<HTMLDivElement>(200)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (email) setSubmitted(true)
+    if (!email) return
+    setLoading(true)
+    setError('')
+
+    try {
+      await submitForm(FORMSPREE_WAITLIST_ID, {
+        email,
+        _subject: 'Nouvelle inscription liste d\'attente — Solvid.ia',
+      })
+      setSubmitted(true)
+    } catch {
+      setError('Une erreur est survenue. Réessayez.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -31,23 +48,35 @@ export default function BetaAccessSection() {
 
         <div ref={formRef} className="max-w-lg mx-auto">
           {!submitted ? (
-            <form onSubmit={handleSubmit} className="flex gap-3">
-              <input
-                type="email"
-                required
-                placeholder="votre@email.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 border border-border rounded-xl px-5 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary bg-white"
-              />
-              <button
-                type="submit"
-                className="inline-flex items-center gap-2 bg-primary text-white rounded-xl px-6 py-3.5 font-semibold text-sm hover:bg-primary-dark transition-colors cursor-pointer shrink-0"
-              >
-                Rejoindre la liste
-                <ArrowRight size={16} />
-              </button>
-            </form>
+            <>
+              <form onSubmit={handleSubmit} className="flex gap-3">
+                <input
+                  type="email"
+                  required
+                  placeholder="votre@email.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="flex-1 border border-border rounded-xl px-5 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary bg-white"
+                />
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="inline-flex items-center gap-2 bg-primary text-white rounded-xl px-6 py-3.5 font-semibold text-sm hover:bg-primary-dark transition-colors cursor-pointer shrink-0 disabled:opacity-60"
+                >
+                  {loading ? (
+                    <Loader2 size={16} className="animate-spin" />
+                  ) : (
+                    <>
+                      Rejoindre la liste
+                      <ArrowRight size={16} />
+                    </>
+                  )}
+                </button>
+              </form>
+              {error && (
+                <p className="text-red-500 text-sm text-center mt-3">{error}</p>
+              )}
+            </>
           ) : (
             <div className="text-center bg-primary/5 rounded-2xl p-8 border border-primary/10">
               <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
