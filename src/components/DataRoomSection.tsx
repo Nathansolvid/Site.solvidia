@@ -6,31 +6,31 @@ const features = [
     icon: Download,
     title: 'Import Excel',
     description:
-      'Glissez vos fichiers existants. 17 modèles fournis, prêts à remplir.',
+      'Glissez vos fichiers existants. On vous dit quels indicateurs manquent et comment les compléter.',
   },
   {
     icon: Plug,
     title: 'Connexion ERP',
     description:
-      'Connectez SAP, Oracle, Sage ou votre logiciel comptable pour récupérer vos données automatiquement.',
+      'Connectez SAP, Oracle, Sage pour récupérer automatiquement les données déjà présentes dans votre SI.',
   },
   {
     icon: Link,
     title: 'Traçabilité totale',
     description:
-      'Chaque donnée est reliée à sa source : qui l\'a saisie, quand, avec quel justificatif.',
+      'Chaque indicateur est relié à sa source : qui l\'a saisi, quand, avec quel justificatif en preuve.',
   },
   {
     icon: Eye,
     title: 'Prêt pour l\'audit',
     description:
-      'Tout est organisé selon les normes. Un auditeur peut vérifier en quelques clics.',
+      'Vos données sont organisées par référentiel. Un auditeur retrouve chaque preuve en quelques clics.',
   },
   {
     icon: FileOutput,
-    title: 'Export en 1 clic',
+    title: 'Export structuré',
     description:
-      'Générez des rapports PDF ou Excel complets, avec toutes les preuves jointes.',
+      'Exportez vos indicateurs en PDF ou Excel, organisés selon le cadre demandé (VSME, CSRD, banque…).',
   },
 ]
 
@@ -48,10 +48,10 @@ export default function DataRoomSection() {
             La solution
           </p>
           <h2 className="text-3xl lg:text-4xl font-bold text-center mb-4 max-w-3xl mx-auto">
-            Un espace central pour toutes vos données ESG
+            Un seul endroit pour tous vos indicateurs ESG
           </h2>
           <p className="text-center text-muted mb-4 max-w-2xl mx-auto">
-            Importez vos Excel, connectez votre ERP, ou saisissez directement. Tout est centralisé, tracé et exportable.
+            Importez vos fichiers existants, rattachez vos justificatifs et organisez tout selon les référentiels — sans repartir de zéro.
           </p>
         </div>
 

@@ -15,12 +15,12 @@ export default function HeroSection() {
             </span>
 
             <h1 className="text-5xl lg:text-6xl font-bold leading-[1.1] mb-6 text-foreground">
-              Centralisez vos données ESG,{' '}
-              <span className="text-primary">simplifiez vos rapports.</span>
+              Les bons indicateurs,{' '}
+              <span className="text-primary">prêts pour l'audit.</span>
             </h1>
 
             <p className="text-lg text-muted mb-10 max-w-lg leading-relaxed">
-              Collectez, structurez et exportez toutes vos données environnementales, sociales et de gouvernance — à partir de vos fichiers Excel ou de votre ERP.
+              Solvid.ia vous aide à collecter, organiser et tracer les indicateurs ESG dont vos auditeurs, banques et investisseurs ont besoin — sans refaire vos fichiers de zéro.
             </p>
 
             <div className="flex flex-wrap gap-4">
@@ -57,8 +57,8 @@ export default function HeroSection() {
                   <span className="text-lg">📊</span>
                 </div>
                 <div>
-                  <p className="text-xs text-muted">Rapports générés</p>
-                  <p className="font-bold text-sm">Prêt pour l'audit</p>
+                  <p className="text-xs text-muted">Indicateurs collectés</p>
+                  <p className="font-bold text-sm">Tracés et vérifiables</p>
                 </div>
               </div>
               <div className="absolute -top-4 -right-4 bg-white rounded-xl shadow-lg border border-border px-4 py-3 flex items-center gap-3">

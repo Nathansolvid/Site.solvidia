@@ -12,23 +12,23 @@ const steps = [
   {
     number: 2,
     icon: Columns,
-    title: 'On organise automatiquement',
+    title: 'On classe par indicateur',
     description:
-      'La plateforme reconnaît vos données et les classe dans les bonnes catégories ESG.',
+      'La plateforme mappe vos données aux bons indicateurs ESG et vous dit ce qui manque.',
   },
   {
     number: 3,
     icon: Paperclip,
-    title: 'Ajoutez vos justificatifs',
+    title: 'Rattachez vos justificatifs',
     description:
-      'Rattachez vos preuves : factures, certificats, photos... Tout est lié à la bonne donnée.',
+      'Factures, certificats, photos… Chaque indicateur est relié à sa preuve. C\'est ça que l\'auditeur vérifie.',
   },
   {
     number: 4,
     icon: Download,
-    title: 'Exportez votre rapport',
+    title: 'Exportez le dossier complet',
     description:
-      'Générez un dossier complet en PDF ou Excel, prêt à envoyer à votre auditeur ou banque.',
+      'Indicateurs + preuves, organisés par référentiel. Prêt à transmettre à votre auditeur, banque ou investisseur.',
   },
 ]
 
@@ -101,7 +101,7 @@ export default function ExcelImportSection() {
                   </div>
                 </div>
                 <p className="text-primary/60 text-xs mt-4 font-medium">
-                  Excel &rarr; Rapport ESG complet
+                  Vos fichiers &rarr; Indicateurs tracés &rarr; Prêt pour l'audit
                 </p>
               </div>
             </div>

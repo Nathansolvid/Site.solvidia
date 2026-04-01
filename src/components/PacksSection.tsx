@@ -20,37 +20,37 @@ const workflows: Workflow[] = [
   {
     icon: FileCheck,
     title: 'VSME',
-    description: 'Le rapport de durabilité simplifié pour les PME. Le standard européen de référence.',
+    description: 'Collectez les 79 indicateurs du standard européen de durabilité pour PME, avec les bons justificatifs.',
     tag: 'Réglementaire',
   },
   {
     icon: Flame,
     title: 'Bilan Carbone',
-    description: 'Mesurez votre empreinte carbone complète : énergie, transports, achats...',
+    description: 'Rassemblez les données énergie, transports et achats nécessaires au calcul de votre empreinte.',
     tag: 'Environnement',
   },
   {
     icon: Users,
     title: 'Diagnostic Social',
-    description: 'Analysez vos pratiques sociales : emploi, formation, sécurité au travail.',
+    description: 'Enregistrez vos indicateurs emploi, formation et sécurité au travail de manière structurée.',
     tag: 'Social',
   },
   {
     icon: Scale,
     title: 'Gouvernance',
-    description: 'Évaluez votre éthique, conformité et gestion des risques.',
+    description: 'Documentez vos pratiques d\'éthique, conformité et gestion des risques avec les preuves associées.',
     tag: 'Gouvernance',
   },
   {
     icon: Leaf,
     title: 'Diagnostic ESG PME',
-    description: 'Un bilan ESG rapide et complet. Le point de départ idéal.',
+    description: 'Un parcours guidé pour collecter rapidement l\'ensemble de vos indicateurs ESG. Le point de départ idéal.',
     tag: 'Environnement',
   },
   {
     icon: Landmark,
     title: 'Questionnaire Bancaire',
-    description: 'Préparez vos réponses ESG pour vos banques et investisseurs.',
+    description: 'Préparez les réponses et preuves ESG demandées par vos banques et investisseurs.',
     tag: 'Réglementaire',
   },
 ]
@@ -73,13 +73,13 @@ export default function PacksSection() {
         {/* Header */}
         <div ref={headerRef} className="text-center mb-12">
           <p className="text-sm text-primary font-semibold uppercase tracking-wider mb-3">
-            11 parcours disponibles
+            11 parcours de collecte
           </p>
           <h2 className="text-3xl lg:text-4xl font-bold text-center mb-4 max-w-3xl mx-auto">
-            Choisissez ce dont vous avez besoin
+            On vous guide sur ce qu'il faut collecter
           </h2>
           <p className="text-center text-muted mb-4 max-w-2xl mx-auto">
-            Bilan carbone, rapport VSME, diagnostic social… Sélectionnez les parcours adaptés à votre situation et combinez-les librement.
+            Chaque parcours vous indique exactement quels indicateurs enregistrer et quels justificatifs joindre — selon le cadre qui vous concerne.
           </p>
         </div>
 
@@ -87,16 +87,16 @@ export default function PacksSection() {
         <div ref={featuredRef} className="max-w-4xl mx-auto mb-10">
           <div className="bg-card rounded-xl border-2 border-primary p-8 relative overflow-hidden">
             <span className="absolute top-4 right-4 bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full">
-              Le plus utilisé
+              Le plus demandé
             </span>
             <div className="flex items-start gap-4 mb-4">
               <div className="w-14 h-14 bg-primary-light rounded-xl flex items-center justify-center shrink-0">
                 <FileCheck size={28} className="text-primary" />
               </div>
               <div>
-                <h3 className="text-xl font-bold">VSME — Rapport de durabilité</h3>
+                <h3 className="text-xl font-bold">VSME — Collecte des indicateurs de durabilité</h3>
                 <p className="text-muted text-sm mt-1">
-                  Le standard européen pour les PME. Solvid.ia vous guide pas à pas pour remplir vos 79 indicateurs environnementaux, sociaux et de gouvernance.
+                  La plateforme vous guide indicateur par indicateur : quoi remplir, quel format, quelle preuve joindre. Vous n'avez pas besoin de lire la norme, on s'en charge.
                 </p>
               </div>
             </div>
@@ -145,7 +145,7 @@ export default function PacksSection() {
         </div>
 
         <p className="text-center text-muted text-sm mt-8">
-          + 5 autres parcours spécialisés (CSRD, énergie, déchets, santé-sécurité…)
+          + 5 autres parcours de collecte (CSRD, énergie, déchets, santé-sécurité…)
         </p>
       </div>
     </section>

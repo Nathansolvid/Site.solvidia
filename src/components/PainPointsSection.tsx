@@ -4,21 +4,21 @@ import { useScrollReveal } from '../hooks/useScrollReveal'
 const painPoints = [
   {
     icon: FileSpreadsheet,
-    title: 'Vos données sont éparpillées',
+    title: 'Vos indicateurs sont éparpillés',
     description:
-      'Vos infos ESG sont dans des dizaines de fichiers Excel, emails et documents différents. Dur de s\'y retrouver.',
+      'Consommation d\'énergie dans un Excel, données sociales dans un autre, justificatifs par email... Impossible de s\'y retrouver.',
   },
   {
     icon: ShieldAlert,
-    title: 'Impossible de prouver vos chiffres',
+    title: 'Aucune traçabilité pour l\'auditeur',
     description:
-      'Si un auditeur vous demande d\'où vient un chiffre, vous ne pouvez pas le montrer facilement.',
+      'D\'où vient ce chiffre ? Qui l\'a saisi ? Quelle preuve ? Quand un auditeur pose la question, c\'est la panique.',
   },
   {
     icon: Clock,
-    title: 'Trop de temps perdu à compiler',
+    title: 'Vous ne savez pas quoi collecter',
     description:
-      'Vous passez des jours à copier-coller des données d\'un fichier à l\'autre pour faire vos rapports.',
+      'VSME, bilan carbone, questionnaires bancaires... Chaque cadre demande des indicateurs différents et c\'est difficile de s\'y retrouver.',
   },
 ]
 
@@ -35,10 +35,10 @@ export default function PainPointsSection() {
             Le problème
           </p>
           <h2 className="text-3xl lg:text-4xl font-bold text-center mb-4 max-w-3xl mx-auto">
-            Gérer ses données ESG, c'est compliqué
+            Collecter les bons indicateurs ESG, c'est le vrai défi
           </h2>
           <p className="text-center text-muted mb-12 max-w-2xl mx-auto">
-            Aujourd'hui, la plupart des entreprises galèrent avec leurs données environnementales, sociales et de gouvernance.
+            Ce n'est pas le bilan en lui-même le problème — c'est d'avoir les bonnes données, au bon format, avec les bonnes preuves.
           </p>
         </div>
 

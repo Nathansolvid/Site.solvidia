@@ -9,8 +9,8 @@
 // Les soumissions arrivent par email + dashboard Formspree
 // ============================================================
 
-export const FORMSPREE_DEMO_ID = 'xyzgvonq'      // ← Remplace par ton ID "Demo"
-export const FORMSPREE_WAITLIST_ID = 'xyzgvonq'   // ← Remplace par ton ID "Waitlist"
+export const FORMSPREE_DEMO_ID = 'mlgoljpv'       // Demo Solvid.ia
+export const FORMSPREE_WAITLIST_ID = 'mlgoljpv'    // ← Crée un 2e formulaire sur Formspree et remplace cet ID
 
 export async function submitForm(formId: string, data: Record<string, string>) {
   const res = await fetch(`https://formspree.io/f/${formId}`, {

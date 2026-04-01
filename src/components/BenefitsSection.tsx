@@ -4,27 +4,27 @@ import { useScrollReveal } from '../hooks/useScrollReveal'
 const benefits = [
   {
     icon: ShieldCheck,
-    title: 'Prêt pour l\'audit',
+    title: 'Traçabilité complète',
     description:
-      'Chaque donnée est traçable : on sait qui l\'a saisie, quand, et avec quel document en preuve.',
+      'Chaque indicateur est relié à sa preuve : qui l\'a saisi, quand, quel document en justificatif. Exactement ce qu\'un auditeur vérifie.',
   },
   {
     icon: FileSpreadsheet,
-    title: 'Compatible Excel',
+    title: 'Partez de vos Excel',
     description:
-      'Importez vos fichiers existants. 17 modèles prêts à l\'emploi fournis avec la plateforme.',
+      'Pas besoin de tout ressaisir. Importez vos fichiers existants, on vous dit ce qui manque.',
   },
   {
     icon: Users,
-    title: 'Travail en équipe',
+    title: 'Chacun remplit sa partie',
     description:
-      'Chacun remplit sa partie. Consultants, auditeurs et collaborateurs ont chacun leur accès.',
+      'Le DAF remplit les données financières, le RH les indicateurs sociaux, le responsable site les données énergie. Tout converge au même endroit.',
   },
   {
     icon: Brain,
-    title: 'Assisté par l\'IA',
+    title: 'Guidé pas à pas',
     description:
-      'L\'intelligence artificielle vous aide à rédiger vos rapports. Vous gardez toujours le contrôle.',
+      'Pour chaque indicateur, on vous explique quoi remplir, dans quel format et quelle preuve joindre. Pas besoin de lire les normes.',
   },
 ]
 
@@ -40,7 +40,7 @@ export default function BenefitsSection() {
             Pourquoi Solvid.ia
           </p>
           <h2 className="text-3xl lg:text-4xl font-bold text-center mb-4 max-w-3xl mx-auto">
-            Simple, fiable et fait pour les PME
+            On ne fait pas le bilan à votre place — on vous aide à collecter les bonnes données
           </h2>
         </div>
         <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">

@@ -9,10 +9,10 @@ export default function FinalCtaSection() {
     <section className="py-20 bg-dark-green relative overflow-hidden">
       <div ref={contentRef} className="max-w-7xl mx-auto px-6 text-center relative z-10">
         <h2 className="text-3xl lg:text-4xl font-bold text-white text-center mb-4">
-          Prêt à simplifier votre gestion ESG ?
+          Prêt à avoir vos indicateurs ESG en ordre ?
         </h2>
         <p className="text-white/70 text-center mb-8 max-w-xl mx-auto">
-          Centralisez vos données, générez vos rapports et soyez prêt pour l'audit — en quelques clics.
+          Collectez les bonnes données, rattachez vos preuves et soyez prêt quand l'auditeur appelle.
         </p>
 
         <div className="flex flex-wrap gap-4 justify-center">
