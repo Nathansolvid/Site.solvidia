@@ -1,10 +1,16 @@
-import { X, Send } from 'lucide-react'
+import { X, Send, CheckCircle } from 'lucide-react'
 import { useForm, ValidationError } from '@formspree/react'
 
 interface DemoModalProps {
   open: boolean
   onClose: () => void
 }
+
+const earlyAdopterBenefits = [
+  'Accès complet et gratuit à la plateforme pendant la phase beta',
+  'Accompagnement personnalisé par l'équipe',
+  'Tarif préférentiel garanti au lancement officiel',
+]
 
 export default function DemoModal({ open, onClose }: DemoModalProps) {
   const [state, handleSubmit] = useForm('mlgoljpv')
@@ -17,7 +23,7 @@ export default function DemoModal({ open, onClose }: DemoModalProps) {
       <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
 
       {/* Modal */}
-      <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-lg p-8 animate-fade-in">
+      <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto p-8 animate-fade-in">
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-muted hover:text-foreground transition-colors"
@@ -43,13 +49,25 @@ export default function DemoModal({ open, onClose }: DemoModalProps) {
           </div>
         ) : (
           <>
-            <h3 className="text-2xl font-bold mb-1">Demander une démo</h3>
-            <p className="text-muted text-sm mb-6">
-              Un consultant Solvid.ia vous recontactera sous 24h pour organiser une démonstration personnalisée.
+            <h3 className="text-2xl font-bold mb-1">Rejoignez les 10 Early Adopters</h3>
+            <p className="text-muted text-sm mb-5">
+              Testez Solvid.ia en avant-première et contribuez à façonner la plateforme.
             </p>
 
+            {/* Proposition de valeur */}
+            <div className="bg-primary/5 border border-primary/15 rounded-xl p-4 mb-6">
+              <ul className="space-y-2.5">
+                {earlyAdopterBenefits.map((benefit) => (
+                  <li key={benefit} className="flex items-start gap-2.5">
+                    <CheckCircle size={18} className="text-primary shrink-0 mt-0.5" />
+                    <span className="text-sm font-medium text-foreground">{benefit}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
             <form onSubmit={handleSubmit} className="space-y-4">
-              <input type="hidden" name="_subject" value="Nouvelle demande de démo — Solvid.ia" />
+              <input type="hidden" name="_subject" value="Early Adopter — Solvid.ia" />
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
@@ -101,6 +119,22 @@ export default function DemoModal({ open, onClose }: DemoModalProps) {
               </div>
 
               <div>
+                <label className="block text-sm font-medium mb-1">Taille de l'entreprise</label>
+                <select
+                  name="taille"
+                  required
+                  className="w-full border border-border rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary bg-white"
+                >
+                  <option value="">Sélectionnez...</option>
+                  <option value="moins-50">Moins de 50 salariés</option>
+                  <option value="50-250">50 à 250 salariés</option>
+                  <option value="250-500">250 à 500 salariés</option>
+                  <option value="plus-500">Plus de 500 salariés</option>
+                </select>
+                <ValidationError field="taille" errors={state.errors} className="text-red-500 text-xs mt-1" />
+              </div>
+
+              <div>
                 <label className="block text-sm font-medium mb-1">Votre besoin</label>
                 <select
                   name="besoin"
@@ -132,7 +166,7 @@ export default function DemoModal({ open, onClose }: DemoModalProps) {
                 disabled={state.submitting}
                 className="w-full bg-primary text-white rounded-lg px-6 py-3 font-medium hover:bg-primary-dark transition-colors text-sm disabled:opacity-60 flex items-center justify-center gap-2"
               >
-                {state.submitting ? 'Envoi en cours...' : 'Envoyer ma demande'}
+                {state.submitting ? 'Envoi en cours...' : 'Rejoindre le programme Early Adopters'}
               </button>
 
               <p className="text-muted text-xs text-center">
