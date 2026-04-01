@@ -59,11 +59,25 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* Divider + copyright */}
-        <div className="border-t border-white/10 mt-12 pt-8">
+        {/* Divider + copyright + mentions légales */}
+        <div className="border-t border-white/10 mt-12 pt-8 space-y-4">
           <p className="text-white/40 text-sm text-center">
             &copy; 2026 Solvid.ia. Tous droits réservés.
           </p>
+          <div className="text-white/30 text-xs text-center leading-relaxed max-w-2xl mx-auto">
+            <p className="font-semibold text-white/40 mb-1">Mentions légales — provisoires</p>
+            <p>
+              Dans l'attente du dépôt des statuts définitifs de Solvid.ia, ce site est édité par :{' '}
+              <strong className="text-white/40">Clement Marinho Développement</strong> — SASU au capital de 1 000 €,
+              immatriculée au RCS de Versailles sous le numéro{' '}
+              <strong className="text-white/40">930 695 895</strong> (SIRET : 930 695 895 00015) —
+              Siège social : 5 avenue de l'Abreuvoir, 78170 La Celle-Saint-Cloud —
+              Dirigeant : Clément Marinho — TVA intracommunautaire : FR24930695895.
+            </p>
+            <p className="mt-2 italic">
+              Ces mentions légales sont temporaires et seront mises à jour dès l'immatriculation de Solvid.ia.
+            </p>
+          </div>
         </div>
       </div>
     </footer>
