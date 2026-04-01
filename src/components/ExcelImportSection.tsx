@@ -54,7 +54,7 @@ export default function ExcelImportSection() {
         </div>
 
         {/* Two columns */}
-        <div className="lg:grid lg:grid-cols-2 gap-16 items-center max-w-5xl mx-auto">
+        <div className="lg:grid lg:grid-cols-2 gap-16 items-center max-w-5xl mx-auto py-4">
           {/* Left: Steps */}
           <div ref={stepsRef} className="space-y-8">
             {steps.map((step) => {

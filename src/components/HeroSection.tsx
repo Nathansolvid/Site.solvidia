@@ -14,7 +14,7 @@ export default function HeroSection() {
               Plateforme ESG pour PME et ETI
             </span>
 
-            <h1 className="text-5xl lg:text-6xl font-bold leading-[1.1] mb-6 text-foreground">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] mb-6 text-foreground">
               Les bons indicateurs,{' '}
               <span className="text-primary">prêts pour l'audit.</span>
             </h1>
@@ -51,8 +51,8 @@ export default function HeroSection() {
                   style={{ marginTop: '-6%' }}
                 />
               </div>
-              {/* Floating badges */}
-              <div className="absolute -bottom-4 -left-4 bg-white rounded-xl shadow-lg border border-border px-4 py-3 flex items-center gap-3">
+              {/* Floating badges — masqués sur mobile pour éviter le débordement */}
+              <div className="hidden sm:flex absolute -bottom-4 -left-4 bg-white rounded-xl shadow-lg border border-border px-4 py-3 items-center gap-3">
                 <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center">
                   <span className="text-lg">📊</span>
                 </div>
@@ -61,7 +61,7 @@ export default function HeroSection() {
                   <p className="font-bold text-sm">Tracés et vérifiables</p>
                 </div>
               </div>
-              <div className="absolute -top-4 -right-4 bg-white rounded-xl shadow-lg border border-border px-4 py-3 flex items-center gap-3">
+              <div className="hidden sm:flex absolute -top-4 -right-4 bg-white rounded-xl shadow-lg border border-border px-4 py-3 items-center gap-3">
                 <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
                   <span className="text-lg">🔗</span>
                 </div>

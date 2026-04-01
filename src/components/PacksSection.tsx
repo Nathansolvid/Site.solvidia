@@ -100,7 +100,7 @@ export default function PacksSection() {
                 </p>
               </div>
             </div>
-            <div className="grid grid-cols-3 gap-6 mt-6">
+            <div className="grid grid-cols-3 gap-3 sm:gap-6 mt-6">
               <div className="text-center">
                 <p className="text-2xl font-bold text-primary">79</p>
                 <p className="text-xs text-muted">indicateurs guidés</p>
