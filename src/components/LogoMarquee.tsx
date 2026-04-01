@@ -1,15 +1,15 @@
 const clients = [
-  { name: 'Alan', logo: '/images/logos/alan.svg', cls: 'h-16 w-auto' },
-  { name: 'Mistral AI', logo: '/images/logos/mistral.svg', cls: 'h-8 w-auto' },
-  { name: 'Bpifrance', logo: '/images/logos/bpifrance.svg', cls: 'h-8 w-auto' },
-  { name: 'Doctolib', logo: '/images/logos/doctolib.svg', cls: 'h-8 w-auto' },
-  { name: 'Qonto', logo: '/images/logos/qonto.svg', cls: 'h-8 w-auto' },
-  { name: 'Schneider Electric', logo: '/images/logos/schneider.svg', cls: 'h-8 w-auto' },
-  { name: 'Danone', logo: '/images/logos/danone.svg', cls: 'h-8 w-auto' },
-  { name: 'LVMH', logo: '/images/logos/lvmh.svg', cls: 'h-8 w-auto' },
-  { name: 'Veolia', logo: '/images/logos/veolia.svg', cls: 'h-8 w-auto' },
-  { name: 'Saint-Gobain', logo: '/images/logos/saintgobain.svg', cls: 'h-8 w-auto' },
-  { name: 'Capgemini', logo: '/images/logos/capgemini.svg', cls: 'h-8 w-auto' },
+  { name: 'Alan', logo: '/images/logos/alan.svg' },
+  { name: 'Mistral AI', logo: '/images/logos/mistral.svg' },
+  { name: 'Bpifrance', logo: '/images/logos/bpifrance.svg' },
+  { name: 'Doctolib', logo: '/images/logos/doctolib.svg' },
+  { name: 'Qonto', logo: '/images/logos/qonto.svg' },
+  { name: 'Schneider Electric', logo: '/images/logos/schneider.svg' },
+  { name: 'Danone', logo: '/images/logos/danone.svg' },
+  { name: 'LVMH', logo: '/images/logos/lvmh.svg' },
+  { name: 'Veolia', logo: '/images/logos/veolia.svg' },
+  { name: 'Saint-Gobain', logo: '/images/logos/saintgobain.svg' },
+  { name: 'Capgemini', logo: '/images/logos/capgemini.svg' },
 ]
 
 export default function LogoMarquee() {
@@ -24,12 +24,13 @@ export default function LogoMarquee() {
 
         <div className="animate-marquee items-center">
           {[...clients, ...clients].map((client, i) => (
-            <img
-              key={i}
-              src={client.logo}
-              alt={client.name}
-              className={`${client.cls} mx-12 opacity-60 shrink-0`}
-            />
+            <div key={i} className="mx-10 shrink-0 flex items-center justify-center" style={{ height: 40, width: 140 }}>
+              <img
+                src={client.logo}
+                alt={client.name}
+                className="max-h-full max-w-full opacity-60 object-contain"
+              />
+            </div>
           ))}
         </div>
       </div>
