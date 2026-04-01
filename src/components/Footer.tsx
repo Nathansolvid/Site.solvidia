@@ -40,7 +40,7 @@ export default function Footer() {
             <div>
               <Logo className="h-11 w-auto" variant="light" />
               <p className="text-white/50 text-sm mt-3">
-                La plateforme ESG pour les PME.
+                La plateforme ESG pour PME et ETI.
               </p>
             </div>
 
