@@ -11,7 +11,7 @@ export default function HeroSection() {
           {/* Left column */}
           <div className="animate-hero-in">
             <span className="inline-block bg-primary/10 text-primary rounded-full px-4 py-1.5 text-sm font-semibold mb-8 tracking-wide">
-              Plateforme ESG pour PME et ETI
+              Plateforme ESG pour les PME
             </span>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] mb-6 text-foreground">
