@@ -1,6 +1,5 @@
-import { useState } from 'react'
-import { X, Send, Loader2 } from 'lucide-react'
-import { submitForm, FORMSPREE_DEMO_ID } from '../lib/formspree'
+import { X, Send } from 'lucide-react'
+import { useForm, ValidationError } from '@formspree/react'
 
 interface DemoModalProps {
   open: boolean
@@ -8,37 +7,9 @@ interface DemoModalProps {
 }
 
 export default function DemoModal({ open, onClose }: DemoModalProps) {
-  const [submitted, setSubmitted] = useState(false)
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
+  const [state, handleSubmit] = useForm('mlgoljpv')
 
   if (!open) return null
-
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    setLoading(true)
-    setError('')
-
-    const form = e.currentTarget
-    const data = {
-      prenom: (form.elements.namedItem('prenom') as HTMLInputElement).value,
-      nom: (form.elements.namedItem('nom') as HTMLInputElement).value,
-      email: (form.elements.namedItem('email') as HTMLInputElement).value,
-      entreprise: (form.elements.namedItem('entreprise') as HTMLInputElement).value,
-      besoin: (form.elements.namedItem('besoin') as HTMLSelectElement).value,
-      message: (form.elements.namedItem('message') as HTMLTextAreaElement).value,
-      _subject: 'Nouvelle demande de démo — Solvid.ia',
-    }
-
-    try {
-      await submitForm(FORMSPREE_DEMO_ID, data)
-      setSubmitted(true)
-    } catch {
-      setError('Une erreur est survenue. Réessayez ou contactez-nous directement.')
-    } finally {
-      setLoading(false)
-    }
-  }
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
@@ -54,7 +25,7 @@ export default function DemoModal({ open, onClose }: DemoModalProps) {
           <X size={20} />
         </button>
 
-        {submitted ? (
+        {state.succeeded ? (
           <div className="text-center py-8">
             <div className="w-16 h-16 bg-primary-light rounded-full flex items-center justify-center mx-auto mb-4">
               <Send size={28} className="text-primary" />
@@ -78,6 +49,8 @@ export default function DemoModal({ open, onClose }: DemoModalProps) {
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4">
+              <input type="hidden" name="_subject" value="Nouvelle demande de démo — Solvid.ia" />
+
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium mb-1">Prénom</label>
@@ -88,6 +61,7 @@ export default function DemoModal({ open, onClose }: DemoModalProps) {
                     className="w-full border border-border rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
                     placeholder="Jean"
                   />
+                  <ValidationError field="prenom" errors={state.errors} className="text-red-500 text-xs mt-1" />
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-1">Nom</label>
@@ -98,6 +72,7 @@ export default function DemoModal({ open, onClose }: DemoModalProps) {
                     className="w-full border border-border rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
                     placeholder="Dupont"
                   />
+                  <ValidationError field="nom" errors={state.errors} className="text-red-500 text-xs mt-1" />
                 </div>
               </div>
 
@@ -110,6 +85,7 @@ export default function DemoModal({ open, onClose }: DemoModalProps) {
                   className="w-full border border-border rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
                   placeholder="jean@entreprise.com"
                 />
+                <ValidationError field="email" errors={state.errors} className="text-red-500 text-xs mt-1" />
               </div>
 
               <div>
@@ -121,6 +97,7 @@ export default function DemoModal({ open, onClose }: DemoModalProps) {
                   className="w-full border border-border rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
                   placeholder="Nom de votre entreprise"
                 />
+                <ValidationError field="entreprise" errors={state.errors} className="text-red-500 text-xs mt-1" />
               </div>
 
               <div>
@@ -137,6 +114,7 @@ export default function DemoModal({ open, onClose }: DemoModalProps) {
                   <option value="accompagnement">Accompagnement consultant</option>
                   <option value="autre">Autre</option>
                 </select>
+                <ValidationError field="besoin" errors={state.errors} className="text-red-500 text-xs mt-1" />
               </div>
 
               <div>
@@ -149,23 +127,12 @@ export default function DemoModal({ open, onClose }: DemoModalProps) {
                 />
               </div>
 
-              {error && (
-                <p className="text-red-500 text-sm text-center">{error}</p>
-              )}
-
               <button
                 type="submit"
-                disabled={loading}
+                disabled={state.submitting}
                 className="w-full bg-primary text-white rounded-lg px-6 py-3 font-medium hover:bg-primary-dark transition-colors text-sm disabled:opacity-60 flex items-center justify-center gap-2"
               >
-                {loading ? (
-                  <>
-                    <Loader2 size={16} className="animate-spin" />
-                    Envoi en cours...
-                  </>
-                ) : (
-                  'Envoyer ma demande'
-                )}
+                {state.submitting ? 'Envoi en cours...' : 'Envoyer ma demande'}
               </button>
 
               <p className="text-muted text-xs text-center">

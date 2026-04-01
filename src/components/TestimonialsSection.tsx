@@ -1,34 +1,11 @@
-import { useState } from 'react'
-import { ArrowRight, Sparkles, Loader2 } from 'lucide-react'
+import { ArrowRight, Sparkles } from 'lucide-react'
 import { useScrollReveal } from '../hooks/useScrollReveal'
-import { submitForm, FORMSPREE_WAITLIST_ID } from '../lib/formspree'
+import { useForm, ValidationError } from '@formspree/react'
 
 export default function BetaAccessSection() {
-  const [email, setEmail] = useState('')
-  const [submitted, setSubmitted] = useState(false)
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
+  const [state, handleSubmit] = useForm('mlgoljpv')
   const headerRef = useScrollReveal<HTMLDivElement>(0)
   const formRef = useScrollReveal<HTMLDivElement>(200)
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!email) return
-    setLoading(true)
-    setError('')
-
-    try {
-      await submitForm(FORMSPREE_WAITLIST_ID, {
-        email,
-        _subject: 'Nouvelle inscription liste d\'attente — Solvid.ia',
-      })
-      setSubmitted(true)
-    } catch {
-      setError('Une erreur est survenue. Réessayez.')
-    } finally {
-      setLoading(false)
-    }
-  }
 
   return (
     <section id="beta" className="min-h-screen flex items-center">
@@ -47,24 +24,24 @@ export default function BetaAccessSection() {
         </div>
 
         <div ref={formRef} className="max-w-lg mx-auto">
-          {!submitted ? (
+          {!state.succeeded ? (
             <>
               <form onSubmit={handleSubmit} className="flex gap-3">
+                <input type="hidden" name="_subject" value="Nouvelle inscription liste d'attente — Solvid.ia" />
                 <input
                   type="email"
+                  name="email"
                   required
                   placeholder="votre@email.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
                   className="flex-1 border border-border rounded-xl px-5 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary bg-white"
                 />
                 <button
                   type="submit"
-                  disabled={loading}
+                  disabled={state.submitting}
                   className="inline-flex items-center gap-2 bg-primary text-white rounded-xl px-6 py-3.5 font-semibold text-sm hover:bg-primary-dark transition-colors cursor-pointer shrink-0 disabled:opacity-60"
                 >
-                  {loading ? (
-                    <Loader2 size={16} className="animate-spin" />
+                  {state.submitting ? (
+                    'Envoi...'
                   ) : (
                     <>
                       Rejoindre la liste
@@ -73,9 +50,7 @@ export default function BetaAccessSection() {
                   )}
                 </button>
               </form>
-              {error && (
-                <p className="text-red-500 text-sm text-center mt-3">{error}</p>
-              )}
+              <ValidationError field="email" errors={state.errors} className="text-red-500 text-sm text-center mt-2" />
             </>
           ) : (
             <div className="text-center bg-primary/5 rounded-2xl p-8 border border-primary/10">
