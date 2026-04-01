@@ -1,18 +1,15 @@
 import { ArrowRight } from 'lucide-react'
 import { useDemoModal } from '../App'
-import { useScrollReveal } from '../hooks/useScrollReveal'
 
 export default function HeroSection() {
   const { openDemo } = useDemoModal()
-  const leftRef = useScrollReveal<HTMLDivElement>(0)
-  const rightRef = useScrollReveal<HTMLDivElement>(200)
 
   return (
     <section id="hero" className="bg-white min-h-screen flex items-center">
       <div className="max-w-7xl mx-auto px-6 py-24 w-full">
         <div className="lg:grid lg:grid-cols-2 lg:gap-20 items-center">
           {/* Left column */}
-          <div ref={leftRef}>
+          <div className="animate-hero-in">
             <span className="inline-block bg-primary/10 text-primary rounded-full px-4 py-1.5 text-sm font-semibold mb-8 tracking-wide">
               Plateforme ESG pour PME et ETI
             </span>
@@ -44,7 +41,7 @@ export default function HeroSection() {
           </div>
 
           {/* Right column — Dashboard */}
-          <div ref={rightRef} className="mt-16 lg:mt-0">
+          <div className="mt-16 lg:mt-0 animate-hero-in" style={{ animationDelay: '0.2s' }}>
             <div className="bg-primary/5 rounded-3xl p-5 relative">
               <div className="rounded-2xl overflow-hidden shadow-2xl shadow-primary/10 border border-primary/10">
                 <img

@@ -11,15 +11,27 @@ export function useScrollReveal<T extends HTMLElement>(delay = 0) {
     el.style.transform = 'translateY(40px)'
     el.style.transition = `opacity 0.7s ease ${delay}ms, transform 0.7s ease ${delay}ms`
 
+    const reveal = () => {
+      el.style.opacity = '1'
+      el.style.transform = 'translateY(0)'
+    }
+
+    // Check if already in viewport (for elements visible on load)
+    const rect = el.getBoundingClientRect()
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      // Small timeout to allow CSS transition to apply
+      setTimeout(reveal, 50)
+      return
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          el.style.opacity = '1'
-          el.style.transform = 'translateY(0)'
+          reveal()
           observer.unobserve(el)
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0, rootMargin: '0px 0px -30px 0px' }
     )
 
     observer.observe(el)
