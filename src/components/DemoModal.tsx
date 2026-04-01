@@ -8,7 +8,7 @@ interface DemoModalProps {
 
 const earlyAdopterBenefits = [
   'Accès complet et gratuit à la plateforme pendant la phase beta',
-  'Accompagnement personnalisé par l'équipe',
+  'Accompagnement personnalisé par l\'équipe',
   'Tarif préférentiel garanti au lancement officiel',
 ]
 
