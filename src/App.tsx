@@ -12,7 +12,7 @@ import FinalCtaSection from './components/FinalCtaSection'
 import Footer from './components/Footer'
 import DemoModal from './components/DemoModal'
 
-export const DemoContext = createContext<{ openDemo: () => void }>({ openDemo: () => {} })
+const DemoContext = createContext<{ openDemo: () => void }>({ openDemo: () => {} })
 export const useDemoModal = () => useContext(DemoContext)
 
 function App() {

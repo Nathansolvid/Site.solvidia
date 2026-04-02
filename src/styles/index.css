@@ -6,17 +6,12 @@
   --color-primary-dark: #245f44;
   --color-primary-light: #EDF7F1;
   --color-dark-green: #0D3B27;
-  --color-success: #2D9D5F;
   --color-background: #F0F4F1;
   --color-foreground: #1A2E24;
   --color-muted: #8aab98;
   --color-border: #E2EDE7;
   --color-card: #ffffff;
-  --color-esg-e: #2D9D5F;
-  --color-esg-s: #2980B9;
-  --color-esg-g: #8E44AD;
   --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
-  --font-mono: 'DM Mono', ui-monospace, monospace;
 }
 
 html {
