@@ -19,10 +19,10 @@ export default function BetaAccessSection() {
         <div ref={headerRef} className="text-center mb-10">
           <div className="inline-flex items-center gap-2 bg-primary/10 text-primary rounded-full px-4 py-1.5 text-sm font-semibold mb-6">
             <Sparkles size={16} />
-            Accès limité — 10 places
+            Accès limité — 6 places
           </div>
           <h2 className="text-3xl lg:text-4xl font-bold text-center mb-4 max-w-3xl mx-auto">
-            Rejoignez les 10 Early Adopters
+            Rejoignez les 6 Early Adopters
           </h2>
           <p className="text-center text-muted mb-4 max-w-xl mx-auto">
             Testez Solvid.ia en avant-première et contribuez à façonner la plateforme.
