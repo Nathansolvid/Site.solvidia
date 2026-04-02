@@ -1,7 +1,6 @@
 import { useState, createContext, useContext } from 'react'
 import Navbar from './components/Navbar'
 import HeroSection from './components/HeroSection'
-import LogoMarquee from './components/LogoMarquee'
 import PainPointsSection from './components/PainPointsSection'
 import DataRoomSection from './components/DataRoomSection'
 import PacksSection from './components/PacksSection'
@@ -25,7 +24,6 @@ function App() {
         <Navbar />
         <main>
           <HeroSection />
-          <LogoMarquee />
           <PainPointsSection />
           <DataRoomSection />
           <PacksSection />
