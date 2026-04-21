@@ -1,99 +1,100 @@
-import { Download, Link, Eye, FileOutput, Plug } from 'lucide-react'
+import { Upload, Download, Link, Eye, Plug, Sparkles } from 'lucide-react'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 
 const features = [
   {
     icon: Download,
     title: 'Import Excel',
-    description:
-      'Glissez vos fichiers existants. On vous dit quels indicateurs manquent et comment les compléter.',
+    description: 'Glissez vos fichiers existants. On vous dit quels indicateurs manquent.',
   },
   {
     icon: Plug,
     title: 'Connexion ERP',
-    description:
-      'Connectez SAP, Oracle, Sage pour récupérer automatiquement les données déjà présentes dans votre SI.',
+    description: 'SAP, Oracle, Sage — récupération auto des données de votre SI.',
   },
   {
     icon: Link,
     title: 'Traçabilité totale',
-    description:
-      'Chaque indicateur est relié à sa source : qui l\'a saisi, quand, avec quel justificatif en preuve.',
+    description: 'Chaque indicateur relié à sa source : qui, quand, avec quelle preuve.',
   },
   {
     icon: Eye,
     title: 'Prêt pour l\'audit',
-    description:
-      'Vos données sont organisées par référentiel. Un auditeur retrouve chaque preuve en quelques clics.',
+    description: 'Données organisées par référentiel. L\'auditeur retrouve chaque preuve en quelques clics.',
   },
   {
-    icon: FileOutput,
+    icon: Upload,
     title: 'Export structuré',
-    description:
-      'Exportez vos indicateurs en PDF ou Excel, organisés selon le cadre demandé (VSME, CSRD, banque…).',
+    description: 'PDF ou Excel, selon le cadre demandé (VSME, CSRD, banque…).',
   },
 ]
 
 export default function DataRoomSection() {
   const headerRef = useScrollReveal<HTMLDivElement>(0)
-  const topRef = useScrollReveal<HTMLDivElement>(200)
-  const bottomRef = useScrollReveal<HTMLDivElement>(400)
+  const listRef = useScrollReveal<HTMLDivElement>(200)
 
   return (
-    <section id="solution" className="min-h-screen flex items-center">
-      <div className="max-w-7xl mx-auto px-6 py-20 w-full">
-        {/* Header */}
-        <div ref={headerRef} className="text-center mb-14">
-          <p className="text-sm text-primary font-semibold uppercase tracking-wider mb-3">
-            La solution
-          </p>
-          <h2 className="text-3xl lg:text-4xl font-bold text-center mb-4 max-w-3xl mx-auto">
-            Un seul endroit pour tous vos indicateurs ESG
-          </h2>
-          <p className="text-center text-muted mb-4 max-w-2xl mx-auto">
-            Importez vos fichiers existants, rattachez vos justificatifs et organisez tout selon les référentiels — sans repartir de zéro.
-          </p>
-        </div>
+    <section id="solution" className="relative overflow-hidden py-24 lg:py-32">
+      <div
+        className="absolute top-0 -right-40 w-[600px] h-[600px] rounded-full pointer-events-none opacity-50"
+        style={{
+          background: 'radial-gradient(circle, rgba(45,122,85,0.12) 0%, rgba(45,122,85,0) 70%)',
+        }}
+        aria-hidden="true"
+      />
 
-        {/* Top row: 2 highlighted cards */}
-        <div ref={topRef} className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-6">
-          {features.slice(0, 2).map((feature) => {
-            const Icon = feature.icon
-            return (
-              <div
-                key={feature.title}
-                className="bg-card rounded-xl border border-border p-8 flex items-start gap-4"
-              >
-                <div className="w-14 h-14 bg-primary-light rounded-xl flex items-center justify-center shrink-0">
-                  <Icon size={24} className="text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-1">{feature.title}</h3>
-                  <p className="text-muted text-sm">{feature.description}</p>
-                </div>
-              </div>
-            )
-          })}
+      <div ref={headerRef} className="relative max-w-3xl mx-auto text-center px-6 mb-16">
+        <div className="inline-flex items-center gap-2 bg-primary/10 text-primary rounded-full px-4 py-1.5 text-sm font-semibold mb-4 border border-primary/20">
+          <Sparkles size={14} />
+          La solution
         </div>
+        <h2 className="text-3xl lg:text-5xl font-bold tracking-tight leading-tight">
+          Un seul endroit pour{' '}
+          <span
+            className="bg-clip-text text-transparent"
+            style={{
+              backgroundImage: 'linear-gradient(135deg, #2D7A55 0%, #0D3B27 100%)',
+            }}
+          >
+            tous vos indicateurs ESG
+          </span>
+        </h2>
+        <p className="text-lg text-muted leading-relaxed mt-5">
+          Importez vos fichiers existants, rattachez vos justificatifs et organisez tout selon les référentiels — sans repartir de zéro.
+        </p>
+      </div>
 
-        {/* Bottom row: 3 smaller cards */}
-        <div ref={bottomRef} className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
-          {features.slice(2).map((feature) => {
-            const Icon = feature.icon
-            return (
-              <div
-                key={feature.title}
-                className="bg-card rounded-xl border border-border p-6 text-center"
-              >
-                <div className="w-12 h-12 bg-primary-light rounded-xl flex items-center justify-center mx-auto mb-3">
-                  <Icon size={22} className="text-primary" />
-                </div>
-                <h3 className="font-semibold text-base mb-1">{feature.title}</h3>
-                <p className="text-muted text-sm">{feature.description}</p>
+      {/* Liste numérotée 01 → 05 en 2 colonnes pour compacter */}
+      <div ref={listRef} className="relative max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-x-12 gap-y-8">
+        {features.map((feature, idx) => {
+          const Icon = feature.icon
+          const number = String(idx + 1).padStart(2, '0')
+          return (
+            <div
+              key={feature.title}
+              className="group relative flex gap-5 pb-6 border-b border-border md:[&:nth-last-child(-n+2)]:border-b-0 md:[&:nth-last-child(-n+2)]:pb-0 last:border-b-0 last:pb-0"
+            >
+              <div className="shrink-0">
+                <span
+                  className="text-4xl lg:text-5xl font-black leading-none bg-clip-text text-transparent"
+                  style={{
+                    backgroundImage: 'linear-gradient(135deg, #2D7A55 0%, #0D3B27 100%)',
+                  }}
+                >
+                  {number}
+                </span>
               </div>
-            )
-          })}
-        </div>
+
+              <div className="flex-1 pt-0.5">
+                <div className="flex items-center gap-2 mb-1.5">
+                  <Icon size={18} className="text-primary" />
+                  <h3 className="font-bold text-lg leading-tight">{feature.title}</h3>
+                </div>
+                <p className="text-muted text-[15px] leading-relaxed">{feature.description}</p>
+              </div>
+            </div>
+          )
+        })}
       </div>
     </section>
   )

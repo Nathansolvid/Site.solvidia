@@ -49,7 +49,7 @@ export default function DemoModal({ open, onClose }: DemoModalProps) {
           </div>
         ) : (
           <>
-            <h3 className="text-2xl font-bold mb-1">Rejoignez les 6 Early Adopters</h3>
+            <h3 className="text-2xl font-bold mb-1">Rejoignez le programme Early Adopters</h3>
             <p className="text-muted text-sm mb-5">
               Testez Solvid.ia en avant-première et contribuez à façonner la plateforme.
             </p>
